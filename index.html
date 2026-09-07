@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LKDN FITNESS — Hybrid Athlete Intake</title>
+<meta name="description" content="Pre-exercise screening and hybrid athlete intake for LKDN FITNESS hybrid coaching. Strathfield NSW and online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0B0B;
+  --char:#181818;
+  --steel:#2E2E2E;
+  --gold:#C8891B;
+  --gold-lt:#E3A93C;
+  --gold-wash:#FBF2E1;
+  --bone:#F2F0EB;
+  --paper:#FFFFFF;
+  --grey:#8C8C8C;
+  --line:#D9D6CF;
+  --alert:#8E2A2A;
+  --tint:#F0D9A8; --tintdim:#B29A6B; --tint2:#C8B79A; --t2b:#7E6A46;
+
+  --display:'Antonio',Impact,sans-serif;
+  --body:'Barlow',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  --gut:clamp(18px,4vw,64px);
+}
+/* ---------- athlete-path themes ---------- */
+body.path-hybrid{--gold:#2E7D4F;--gold-lt:#53A874;--gold-wash:#E9F3ED;
+  --tint:#CFE8D6;--tintdim:#7FA98C;--tint2:#BFD9C6;--t2b:#4C6B57}
+body.path-stronger{--gold:#2E5F8F;--gold-lt:#5B8FC7;--gold-wash:#EAF1F8;
+  --tint:#CFE0F0;--tintdim:#7E9BB8;--tint2:#BAD0E4;--t2b:#455F7A}
+
+/* ---------- chooser ---------- */
+body.pre-choose .brief{display:none}
+body.pre-choose header.hero{display:none}
+body.pre-choose footer{display:none}
+body.pre-choose{background:var(--ink)}
+#choose.fade-out{opacity:0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+body.arrived header.hero{animation:fadeUp .45s ease both}
+body.arrived .brief{animation:fadeUp .45s .08s ease both}
+@media (prefers-reduced-motion:reduce){
+  .choose{transition:none}
+  body.arrived header.hero,body.arrived .brief{animation:none}
+}
+.choose{background:var(--ink);color:#fff;min-height:96vh;display:flex;align-items:center;
+  transition:opacity .4s ease;
+  padding:clamp(36px,6vw,72px) var(--gut);border-bottom:6px solid #2E2E2E;position:relative;overflow:hidden}
+.choose::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent 119px,rgba(255,255,255,.025) 119px,rgba(255,255,255,.025) 120px)}
+.choose-in{max-width:1280px;margin:0 auto;text-align:center;width:100%;position:relative}
+.choose .logo{width:54px;height:auto;margin:0 auto 26px;display:block;animation:cIn .7s .05s cubic-bezier(.2,.7,.3,1) both}
+.choose-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-lt);
+  margin:0 0 16px;animation:cIn .7s .15s cubic-bezier(.2,.7,.3,1) both}
+.choose h2{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(40px,8.4vw,88px);line-height:.94;letter-spacing:.01em;margin:0 0 18px;color:#fff;
+  animation:cIn .7s .25s cubic-bezier(.2,.7,.3,1) both}
+.choose-hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:#6E6A64;margin:0 0 42px;animation:cIn .7s .33s cubic-bezier(.2,.7,.3,1) both}
+.choose-hint .hint-link{background:none;border:0;padding:0;cursor:pointer;
+  font:inherit;letter-spacing:inherit;text-transform:inherit;color:#53A874;
+  border-bottom:1px solid rgba(83,168,116,.55)}
+.choose-hint .hint-link:hover{color:#7CC79A;border-bottom-color:#7CC79A}
+.choose h2 em{font-style:normal;display:block;color:#5A5751}
+@keyframes cIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.paths{display:grid;gap:16px;text-align:left}
+@media(min-width:860px){.paths{grid-template-columns:repeat(3,1fr)}}
+/* entrance on the wrapper — runs ONCE, never restarted by hover */
+.pathwrap:nth-child(1){animation:cIn .7s .4s cubic-bezier(.2,.7,.3,1) both}
+.pathwrap:nth-child(2){animation:cIn .7s .52s cubic-bezier(.2,.7,.3,1) both}
+.pathwrap:nth-child(3){animation:cIn .7s .64s cubic-bezier(.2,.7,.3,1) both}
+/* float on the button — starts and ends at rest, safe to swap */
+.pathwrap:nth-child(1) .pathcard{animation:cardFloat 4.4s 1.35s ease-in-out infinite}
+.pathwrap:nth-child(2) .pathcard{animation:cardFloat 4.4s 1.75s ease-in-out infinite}
+.pathwrap:nth-child(3) .pathcard{animation:cardFloat 4.4s 2.15s ease-in-out infinite}
+/* breathing glow on a compositor-friendly pseudo layer */
+.pathcard::after{content:"";position:absolute;inset:-16px;border-radius:26px;z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side, rgba(var(--pcg),.5), transparent 72%);
+  opacity:.3;animation:glowBreathe 4.4s ease-in-out infinite}
+.pathwrap:nth-child(1) .pathcard::after{animation-delay:1.35s}
+.pathwrap:nth-child(2) .pathcard::after{animation-delay:1.75s}
+.pathwrap:nth-child(3) .pathcard::after{animation-delay:2.15s}
+/* hover glow brightens on a separate transitioned layer — smooth in AND out */
+.pathcard::before{content:"";position:absolute;inset:-16px;border-radius:26px;z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side, rgba(var(--pcg),.6), transparent 72%);
+  opacity:0;transition:opacity .45s ease}
+.pathcard:hover::before,.pathcard:focus-visible::before{opacity:.6}
+.paths .pathwrap .pathcard:hover,.paths .pathwrap .pathcard:focus-visible{animation:cardPulse 1.9s ease-in-out infinite}
+.pathcard:active{filter:brightness(1.12)}
+.pathcard:focus-visible{outline:2.5px solid var(--pc);outline-offset:5px}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes glowBreathe{0%,100%{opacity:.22}50%{opacity:.5}}
+@keyframes cardPulse{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.022) translateY(-3px)}}
+.pc-mark{display:block;width:64px;height:64px;margin-bottom:20px}
+.pc-mark *{transform-box:fill-box;transform-origin:center}
+.pc-mark .m1{animation:mIn .8s .55s cubic-bezier(.2,.7,.3,1) both}
+.pc-mark .m2{animation:mIn .8s .68s cubic-bezier(.2,.7,.3,1) both}
+.pc-mark .m3{animation:mIn .8s .81s cubic-bezier(.2,.7,.3,1) both}
+@keyframes mIn{from{opacity:0;transform:scale(.5) rotate(-10deg)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .choose .logo,.choose-eyebrow,.choose h2,.pathwrap,.pathcard,.pathcard::before,.pathcard::after,.pc-mark,.pc-mark .m1,.pc-mark .m2,.pc-mark .m3{animation:none;transition:none}
+  .pathcard::after{opacity:.3}
+}
+.pathcard{position:relative;background:var(--char);border:1.5px solid #333;border-top:7px solid var(--pc);
+  border-radius:12px;text-transform:none;letter-spacing:normal;
+  padding:clamp(24px,3vw,34px) clamp(20px,2.6vw,30px) clamp(22px,2.8vw,30px);
+  cursor:pointer;text-align:left;color:#fff;font-family:var(--body);width:100%;
+  transition:border-color .18s,background .18s;display:block;
+  box-shadow:0 18px 36px -16px rgba(0,0,0,.65);will-change:transform}
+.pathcard:hover,.pathcard:focus-visible{border-color:var(--pc);background:#1F1F1F}
+.pc-name{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(26px,3.4vw,36px);line-height:.98;letter-spacing:.02em;color:var(--pc);display:block}
+.pc-tag{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:#fff;margin:12px 0 14px}
+.pc-desc{font-size:14px;line-height:1.5;color:#B8B4AD;margin:0 0 18px}
+.pc-go{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--pc)}
+.pc-go svg{width:15px;height:15px;transition:transform .2s}
+.pathcard:hover .pc-go svg{transform:translateX(5px)}
+.repath{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;background:none;border:0;padding:0;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);cursor:pointer}
+.repath:hover{color:var(--ink);background:none}
+@media (prefers-reduced-motion:reduce){.pathcard,.pc-go svg{transition:none}}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bone);color:var(--ink);
+  font-family:var(--body);font-size:16px;line-height:1.55;
+}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* ---------------- hero ---------------- */
+.hero{background:var(--ink);color:#fff;padding:clamp(28px,6vw,54px) var(--gut) clamp(34px,6vw,58px);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--gold)}
+.hero-grid{position:absolute;inset:0;opacity:.16;pointer-events:none;
+  background-image:repeating-linear-gradient(90deg,transparent 0 63px,rgba(255,255,255,.14) 63px 64px);}
+.hero-inner{max-width:1280px;margin:0 auto;position:relative}
+.brandline{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{height:clamp(46px,8vw,74px);width:auto;display:block;flex:0 0 auto}
+.tagline{font-family:var(--mono);font-size:10px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
+.hero h1{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(38px,10.5vw,86px);line-height:.92;letter-spacing:.005em;
+  margin:clamp(20px,4vw,32px) 0 0;
+}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lede{max-width:60ch;margin:18px 0 0;color:#CFCBC4;font-size:clamp(15px,2vw,17px)}
+.meta-strip{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:26px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#8F8B84}
+.meta-strip b{color:var(--gold-lt);font-weight:500}
+
+/* ---------------- briefing ---------------- */
+body.pre-start .track-wrap,body.pre-start main{display:none}
+.brief{max-width:1280px;margin:0 auto;padding:clamp(34px,6vw,64px) var(--gut) clamp(30px,5vw,56px)}
+.brief-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.brief h2{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(30px,6vw,50px);line-height:1.02;margin:8px 0 18px;letter-spacing:.01em}
+.brief p{max-width:64ch;font-size:17px;line-height:1.6;color:#3A3733;margin:0 0 15px}
+.brief .lead{font-size:clamp(19px,2.7vw,25px);color:var(--ink);line-height:1.45}
+
+/* centred hero block of the briefing */
+.brief-centre{text-align:center;padding-bottom:6px}
+.brief-centre p{margin-left:auto;margin-right:auto}
+.brief-centre h2{font-size:clamp(38px,8vw,76px);line-height:.96;margin:14px 0 22px;
+  text-shadow:0 1px 0 rgba(0,0,0,.04)}
+.brief-centre h2 em{font-style:normal;color:var(--gold);display:block}
+.brief-centre .lead{font-style:italic;max-width:34ch;font-weight:500}
+.brief-centre .kicker{max-width:46ch;color:#5C5852;font-size:16px}
+.centre-mark{width:64px;height:4px;background:var(--gold);margin:0 auto 26px}
+.brief-rule{height:2px;background:var(--ink);margin:clamp(30px,5vw,48px) 0 clamp(22px,4vw,32px)}
+
+.pillars{display:grid;gap:2px;background:var(--ink);border:2px solid var(--ink);margin:34px 0 0}
+@media(min-width:720px){.pillars{grid-template-columns:repeat(3,1fr)}}
+.pillar{background:var(--ink);color:#fff;padding:clamp(24px,3vw,34px)}
+.pillar h3{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(26px,3.6vw,38px);line-height:1;letter-spacing:.02em;color:var(--gold);margin:0 0 14px}
+.pillar p{font-size:17px;line-height:1.5;margin:0;color:#D5D1CA;max-width:32ch}
+
+/* ---------- tier ladder ---------- */
+.tiers{display:flex;flex-direction:column;gap:14px;margin-top:30px}
+.tier{display:block;border:2px solid var(--line);background:var(--paper);position:relative;
+  border-left-width:9px;transition:transform .18s,box-shadow .18s}
+.tiers:not(.has-open) .tier:hover{transform:translateX(4px);border-color:var(--gold)}
+.tier-rank{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--grey);
+  display:block;margin-bottom:8px}
+.tier-name{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:.94;
+  letter-spacing:.02em;display:block}
+.tier-badge{display:inline-block;margin-top:11px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.18em;text-transform:uppercase;padding:5px 11px;border:1px solid currentColor}
+.tier p{margin:0;max-width:62ch;font-size:16.5px;line-height:1.55}
+.ref{font-weight:700}
+
+/* ---- clickable head ---- */
+.tier{padding:0;overflow:hidden}
+.tier-head{display:grid;gap:10px 26px;width:100%;text-align:left;background:none;border:0;
+  padding:clamp(20px,2.8vw,30px) clamp(20px,3vw,34px);cursor:pointer;color:inherit;
+  font-family:var(--body);letter-spacing:normal;text-transform:none;font-size:inherit;transition:none}
+.tier-head:hover{background:none}
+.tier-head p{transition:opacity .28s,transform .28s}
+.tier.open .tier-head p{opacity:0;transform:translateY(-4px)}
+.tier.open .tier-head{padding-bottom:0}
+@media(min-width:820px){.tier-head{grid-template-columns:310px 1fr;align-items:center;column-gap:30px}}
+
+.cue{display:flex;align-items:center;gap:10px;margin-top:13px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
+  opacity:.55;transform:translateX(0);transition:opacity .22s,transform .22s}
+.tier:hover .cue,.tier-head:focus-visible .cue{opacity:1;transform:translateX(5px)}
+.cue svg{width:15px;height:15px;display:block;
+  transition:transform .32s cubic-bezier(.4,0,.2,1)}
+.tier:hover .cue svg{transform:translateY(3px)}
+.tier.open .cue svg{animation:pointdown 1.5s ease-in-out infinite}
+@keyframes pointdown{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media (prefers-reduced-motion:reduce){.tier.open .cue svg{animation:none}}
+.tier.open .cue .cue-t{display:none}
+.tier.open .cue .cue-o{display:inline}
+.cue-o{display:none}
+.tier.open .cue{opacity:1}
+
+/* ---- expanding panel ---- */
+.tier-panel{display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .44s cubic-bezier(.35,0,.15,1)}
+.tier.open .tier-panel{grid-template-rows:1fr}
+.tier-panel > div{overflow:hidden}
+.tier.open .tier-head p{height:0;margin:0;overflow:hidden}
+.tier-panel-in{padding:0 clamp(20px,3vw,34px) clamp(24px,3vw,32px);
+  opacity:0;transform:translateY(-7px);transition:opacity .3s .1s,transform .34s .1s}
+.tier.open .tier-panel-in{opacity:1;transform:none}
+
+.pdivide{height:1px;background:currentColor;opacity:.18;margin:0 0 22px}
+.pgrid{display:grid;gap:20px 34px}
+@media(min-width:760px){.pgrid{grid-template-columns:1fr 1.5fr .8fr}}
+.pcol h4{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  margin:0 0 10px;opacity:.6}
+.pcol p{font-size:15.5px;line-height:1.5;margin:0}
+.t1 .tier-panel-in,.t2 .tier-panel-in{color:#E9E5DE}
+.t1 .pcol h4,.t2 .pcol h4{color:var(--gold-lt);opacity:1}
+.t1 .plist li::before,.t2 .plist li::before{background:var(--gold);opacity:1}
+.t1 .pcom,.t2 .pcom{color:#fff}
+.t1 .pcom span,.t2 .pcom span{color:#B8B4AD;opacity:1}
+.t1 .pdivide,.t2 .pdivide{background:var(--gold);opacity:.35}
+.t1 .cue,.t2 .cue{color:var(--gold-lt);opacity:.75}
+.t1:hover .cue,.t2:hover .cue,.t1.open .cue,.t2.open .cue{opacity:1}
+.t3 .cue,.t4 .cue,.t5 .cue{color:var(--steel)}
+.t3 .tier-panel-in,.t4 .tier-panel-in,.t5 .tier-panel-in{color:var(--char)}
+.plist{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.plist li{position:relative;padding-left:20px;font-size:15.5px;line-height:1.45}
+.plist li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:2px;background:currentColor;opacity:.85}
+.pcom{font-family:var(--display);font-size:26px;text-transform:uppercase;line-height:1;letter-spacing:.02em}
+.pcom span{display:block;font-family:var(--body);font-size:14.5px;text-transform:none;
+  letter-spacing:normal;margin-top:7px;opacity:.7}
+
+/* ---- focus the open one, recede the rest ---- */
+.tiers.has-open .tier:not(.open){filter:blur(2.5px) saturate(.55);opacity:.4;transform:scale(.985)}
+.tiers .tier{transition:filter .38s,opacity .38s,transform .38s,border-color .25s}
+.tiers.has-open .tier:not(.open):hover{filter:blur(0) saturate(1);opacity:.82;transform:none}
+.tier.open{transform:none}
+@media (prefers-reduced-motion:reduce){
+  .tier-panel,.tier-panel-in,.tiers .tier,.cue,.cue i{transition:none}
+  .tiers.has-open .tier:not(.open){filter:none;opacity:.55}
+}
+
+/* T1 — Premium */
+.t1{background:var(--ink);border-color:var(--gold);border-left-color:var(--gold);box-shadow:0 0 0 1px rgba(200,137,27,.25)}
+.t1 .tier-name{font-size:clamp(38px,5.6vw,58px);color:var(--gold)}
+.t1 .tier-rank{color:var(--gold-lt)}
+.t1 .tier-badge{color:var(--gold-lt)}
+.t1 p{color:#DAD6CF}
+
+/* T2 — Hybrid */
+.t2{background:var(--char);border-color:var(--t2b);border-left-color:var(--gold-lt)}
+.t2 .tier-name{font-size:clamp(32px,4.6vw,46px);color:var(--tint)}
+.t2 .tier-rank{color:var(--tintdim)}
+.t2 .tier-badge{color:var(--gold-lt)}
+.t2 p{color:#CFCBC4}
+
+/* T3 — Doubles */
+.t3{border-left-color:#8E969E}
+.t3 .tier-name{font-size:clamp(27px,3.6vw,36px);color:#4A5058}
+
+/* T4 — Online */
+.t4{border-left-color:#A9A69F}
+.t4 .tier-name{font-size:clamp(24px,3.2vw,31px);color:#5E5A54}
+
+/* T5 — Pack */
+.t5{border-left-color:#C9C5BD}
+.t5 .tier-name{font-size:clamp(21px,2.8vw,27px);color:#7A756E}
+.t5 p{font-size:15.5px}
+
+.tier-scale{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--grey);display:flex;justify-content:space-between;margin:0 0 4px;padding:0 2px}
+.pk-row p{margin:0;font-size:16.5px;line-height:1.55;color:#3A3733;max-width:62ch}
+
+.flow{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(min-width:720px){.flow{grid-template-columns:repeat(5,1fr)}}
+.flow-step{background:var(--paper);padding:17px}
+.flow-step b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--gold);margin-bottom:7px}
+.flow-step span{font-size:15.5px;line-height:1.45;display:block}
+
+.brief-cta{background:var(--ink);color:#fff;padding:clamp(30px,4.5vw,52px);margin-top:clamp(34px,5vw,54px);
+  display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;
+  border-bottom:6px solid var(--gold)}
+.brief-cta div{max-width:40ch}
+.brief-cta h3{font-family:var(--display);font-size:clamp(28px,4.4vw,42px);text-transform:uppercase;margin:0 0 8px;letter-spacing:.02em}
+.brief-cta p{color:#B8B4AD;margin:0;font-size:15px;max-width:none}
+
+button.huge{
+  background:var(--gold);border:2px solid var(--gold);color:var(--ink);
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(22px,3.2vw,30px);letter-spacing:.05em;line-height:1;
+  padding:clamp(20px,2.6vw,28px) clamp(34px,5vw,60px);
+  position:relative;overflow:hidden;flex:0 0 auto;
+  box-shadow:0 0 0 0 rgba(200,137,27,.45);
+  animation:pulse 2.6s ease-out infinite;
+}
+button.huge:hover,button.huge:focus-visible{background:#fff;border-color:#fff;color:var(--ink);animation:none}
+button.huge .arw{display:inline-block;margin-left:14px;transition:transform .2s}
+button.huge:hover .arw{transform:translateX(7px)}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(200,137,27,.5)}
+  70%{box-shadow:0 0 0 20px rgba(200,137,27,0)}
+  100%{box-shadow:0 0 0 0 rgba(200,137,27,0)}
+}
+@media (prefers-reduced-motion:reduce){ button.huge{animation:none} }
+@media (max-width:620px){ button.huge{width:100%;text-align:center} }
+
+/* ---------------- course track ---------------- */
+.track-wrap{background:var(--char);padding:20px var(--gut) 22px;position:sticky;top:0;z-index:40;
+  border-bottom:1px solid #000}
+.track{max-width:1280px;margin:0 auto}
+.track-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;gap:12px}
+.track-label{font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.track-now{font-family:var(--display);font-size:clamp(15px,3vw,19px);text-transform:uppercase;color:#fff;letter-spacing:.03em;text-align:right}
+.course{position:relative;display:flex;justify-content:space-between;align-items:center}
+.course::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:#3A3A3A;transform:translateY(-50%)}
+.course-fill{position:absolute;left:0;top:50%;height:2px;background:var(--gold);transform:translateY(-50%);
+  width:0;transition:width .45s cubic-bezier(.4,0,.2,1)}
+.node{position:relative;width:13px;height:13px;border-radius:50%;background:#3A3A3A;border:2px solid var(--char);
+  transition:background .3s,transform .3s;flex:0 0 auto}
+.node.done{background:var(--gold)}
+.node.active{background:var(--gold-lt);transform:scale(1.65);box-shadow:0 0 0 4px rgba(200,137,27,.22)}
+.node span{position:absolute;top:19px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:9px;color:#6E6A64;letter-spacing:.06em}
+.node.done span,.node.active span{color:var(--gold)}
+.course{padding-bottom:20px}
+
+/* ---------------- form shell ---------------- */
+main{max-width:1280px;margin:0 auto;padding:clamp(26px,5vw,48px) var(--gut) 90px}
+.station{display:none;animation:rise .38s cubic-bezier(.2,.7,.3,1) both}
+.station.on{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .station{animation:none}
+  .course-fill{transition:none}
+  .node{transition:none}
+}
+.st-num{font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+.st-title{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(28px,6vw,46px);line-height:1;letter-spacing:.01em;margin:6px 0 10px}
+.st-sub{color:#5C5852;max-width:74ch;margin:0 0 26px;font-size:15px}
+.rule{height:2px;background:var(--ink);margin:0 0 26px}
+
+.panel{background:var(--paper);border:1px solid var(--line);padding:clamp(18px,3.4vw,28px);margin-bottom:18px}
+.panel-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);
+  margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+
+.grid{display:grid;gap:18px 22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.full{grid-column:1/-1}
+
+label.f{display:block}
+.lab{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--steel);margin-bottom:6px;font-weight:500}
+.lab .opt{color:var(--grey);letter-spacing:.06em}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],select,textarea{
+  width:100%;padding:11px 13px;font-family:var(--body);font-size:15.5px;color:var(--ink);
+  background:var(--bone);border:1px solid var(--line);border-radius:0;
+  transition:border-color .18s,background .18s;
+}
+input:focus,select:focus,textarea:focus{background:#fff;border-color:var(--ink)}
+textarea{min-height:92px;resize:vertical;line-height:1.5}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--steel) 50%),linear-gradient(135deg,var(--steel) 50%,transparent 50%);
+  background-position:calc(100% - 17px) 51%,calc(100% - 12px) 51%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:36px}
+.hint{font-size:12.5px;color:var(--grey);margin-top:5px;line-height:1.4}
+
+/* choice tiles */
+.tiles{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.tile{position:relative}
+.tile input{position:absolute;opacity:0;width:1px;height:1px}
+.tile span{display:block;padding:13px 15px;border:1px solid var(--line);background:var(--bone);cursor:pointer;
+  font-size:15px;line-height:1.35;transition:all .16s}
+.tile span small{display:block;font-size:12.5px;color:var(--grey);margin-top:3px}
+.tile input:checked + span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tile input:checked + span small{color:var(--gold-lt)}
+.tile input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
+.tile span:hover{border-color:var(--steel)}
+
+/* goal tiles — bold multi-select */
+.goals{display:flex;flex-direction:column;gap:9px;margin-bottom:4px}
+.gtile{position:relative}
+.gtile input{position:absolute;opacity:0;width:1px;height:1px}
+.gtile .gt{display:grid;grid-template-columns:minmax(240px,390px) 1fr auto;align-items:center;gap:8px 22px;
+  padding:15px 20px;position:relative;
+  background:var(--paper);border:1.5px solid var(--line);border-left:8px solid var(--acc);
+  cursor:pointer;transition:transform .16s,border-color .16s,background .16s,color .16s}
+.gtile .gt:hover{transform:translateX(4px);border-color:var(--acc)}
+@media (max-width:640px){
+  .gtile .gt{grid-template-columns:1fr auto;gap:4px 14px}
+  .gtile .gdesc{grid-column:1/-1}
+}
+.gname{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(19px,2.4vw,26px);line-height:1;letter-spacing:.02em;color:var(--acc)}
+.gdesc{font-style:normal;font-size:13.5px;line-height:1.35;color:var(--grey)}
+.gprim{display:none;font-style:normal;justify-self:end;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;
+  padding:5px 10px;background:#fff;color:var(--ink);border:1px solid var(--ink);white-space:nowrap}
+.gtile input:checked + .gt{background:var(--acc);border-color:var(--acc);color:#fff}
+.gtile input:checked + .gt .gname{color:#fff}
+.gtile input:checked + .gt .gdesc{color:rgba(255,255,255,.75)}
+.gtile input:focus-visible + .gt{outline:3px solid var(--gold);outline-offset:2px}
+.gtile.is-primary .gprim{display:block}
+.flag.goalflag{border-left-color:var(--gold);background:var(--gold-wash);margin:0 0 16px}
+
+/* goal categories */
+.gcat{border:1.5px solid var(--line);background:var(--paper)}
+.gcat-head{display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  background:var(--ink);color:#fff;border:0;cursor:pointer;
+  padding:14px 18px;font-family:var(--body);letter-spacing:normal;text-transform:none}
+.gcat-head:hover{background:var(--char)}
+.gcat-name{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(17px,2vw,21px);letter-spacing:.05em;line-height:1}
+.gcat-count{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-lt);border:1px solid var(--gold);padding:4px 9px;white-space:nowrap}
+.gcat-head svg{width:14px;height:14px;margin-left:auto;flex:0 0 auto;
+  transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.gcat.open .gcat-head svg{transform:rotate(180deg)}
+.gcat-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.35,0,.15,1)}
+.gcat.open .gcat-panel{grid-template-rows:1fr}
+.gcat-panel > .gcat-in{overflow:hidden;display:flex;flex-direction:column;gap:9px;
+  visibility:hidden;transition:visibility 0s .4s}
+.gcat.open .gcat-panel > .gcat-in{visibility:visible;transition:visibility 0s 0s;
+  padding:12px 12px 14px}
+.gcat .gtile .gt{border-left-width:8px}
+@media (prefers-reduced-motion:reduce){
+  .gcat-panel,.gcat-head svg{transition:none}
+  .gcat-panel > .gcat-in{transition:none}
+}
+.flag.goalflag h4{color:var(--gold)}
+
+/* stacked block list — uniform rows */
+.tiles.stack{grid-template-columns:1fr;gap:0}
+.tiles.stack .tile span{display:flex;justify-content:space-between;align-items:center;gap:16px;
+  border-bottom:0;padding:15px 18px;min-height:58px}
+.tiles.stack .tile:last-child span{border-bottom:1px solid var(--line)}
+.tiles.stack .tile input:checked + span{border-bottom:1px solid var(--ink)}
+.tiles.stack .tile span small{margin-top:0;text-align:right;flex:0 0 auto;max-width:52%}
+@media (max-width:520px){
+  .tiles.stack .tile span{flex-direction:column;align-items:flex-start;gap:3px}
+  .tiles.stack .tile span small{text-align:left;max-width:100%}
+}
+
+/* yes/no screening */
+.q{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;
+  padding:15px 0;border-bottom:1px solid var(--line)}
+.q:last-of-type{border-bottom:0}
+.q-t{font-size:15px;line-height:1.45}
+.q-n{font-family:var(--mono);font-size:11px;color:var(--gold);margin-right:7px;font-weight:600}
+.yn{display:flex;gap:7px;flex:0 0 auto}
+.yn label{position:relative}
+.yn input{position:absolute;opacity:0;width:1px;height:1px}
+.yn span{display:block;min-width:56px;text-align:center;padding:8px 12px;border:1px solid var(--line);
+  background:var(--bone);cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;transition:all .16s}
+.yn input:checked + span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.yn input[value=yes]:checked + span{background:var(--alert);border-color:var(--alert)}
+.yn input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
+@media (max-width:560px){ .q{grid-template-columns:1fr} }
+
+.flag{display:none;margin-top:18px;border-left:4px solid var(--alert);background:#FBF0F0;padding:16px 18px}
+.flag.on{display:block}
+.flag h4{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--alert);margin:0 0 7px}
+.flag p{margin:0;font-size:14.5px;line-height:1.5}
+
+.note{border-left:4px solid var(--gold);background:var(--gold-wash);padding:16px 18px;margin-bottom:20px}
+.note p{margin:0;font-size:14.5px}
+
+/* consent */
+.chk{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:12px 0}
+.chk input{width:19px;height:19px;margin-top:2px;accent-color:var(--gold);flex:0 0 auto}
+.chk label{font-size:14.5px;line-height:1.5}
+
+/* nav */
+.nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:28px;flex-wrap:wrap}
+button{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  cursor:pointer;border:1px solid var(--ink);padding:15px 30px;transition:all .18s;background:var(--ink);color:#fff}
+button:hover{background:var(--gold);border-color:var(--gold)}
+button.ghost{background:transparent;color:var(--ink)}
+button.ghost:hover{background:var(--ink);color:#fff}
+button.ghost[hidden]{display:none}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.big{background:var(--gold);border-color:var(--gold);font-size:13px;padding:18px 40px}
+button.big:hover{background:var(--ink);border-color:var(--ink)}
+
+.err{display:none;margin-top:14px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--alert)}
+.err.on{display:block}
+
+/* review */
+.review{background:var(--paper);border:1px solid var(--line);padding:20px;max-height:330px;overflow:auto;
+  font-family:var(--mono);font-size:12.5px;line-height:1.7;white-space:pre-wrap;color:var(--steel)}
+
+/* done */
+#done{display:none;padding:30px 0 50px}
+#done.on{display:block;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+.done-card{max-width:640px;margin:0 auto;text-align:center;background:var(--ink);color:#fff;
+  padding:clamp(36px,6vw,60px) clamp(24px,5vw,52px);border-bottom:6px solid var(--gold)}
+#done .tick{display:grid;place-items:center;width:74px;height:74px;margin:0 auto 22px;
+  border:2.5px solid var(--gold);border-radius:50%;
+  font-family:var(--display);font-size:38px;color:var(--gold);line-height:1}
+.done-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 10px}
+.done-title{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(34px,7vw,54px);line-height:1;letter-spacing:.01em;margin:0 0 18px;color:#fff}
+.done-mark{width:56px;height:3.5px;background:var(--gold);margin:0 auto 22px}
+.done-lead{font-size:clamp(16px,2.4vw,19px);line-height:1.55;color:#DAD6CF;margin:0 0 30px}
+.done-lead strong{color:var(--gold-lt)}
+.done-rec{border:1.5px solid var(--gold);background:rgba(200,137,27,.08);
+  padding:20px 22px;margin:0 0 24px;text-align:center}
+.done-rec-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 8px}
+.done-rec-name{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(26px,4.6vw,38px);line-height:1;letter-spacing:.02em;color:var(--gold-lt);margin:0 0 10px}
+.done-rec-why{font-size:14.5px;line-height:1.5;color:#CFCBC4;margin:0;max-width:46ch;margin-left:auto;margin-right:auto}
+.done-steps{display:grid;gap:1px;background:#3A3A3A;border:1px solid #3A3A3A;text-align:left;margin:0 0 26px}
+.done-step{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;
+  background:var(--char);padding:14px 18px}
+.done-step b{font-family:var(--mono);font-size:11px;color:var(--gold);font-weight:600}
+.done-step span{font-size:14.5px;line-height:1.45;color:#CFCBC4}
+.done-note{font-size:13.5px;color:#8F8B84;margin:0}
+
+footer{background:var(--ink);color:#7C7871;padding:26px var(--gut);font-family:var(--mono);
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.foot-in{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+</style>
+</head>
+<body class="pre-start pre-choose">
+
+<header class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="brandline">
+      <svg class="logo" viewBox="0 0 492.87 409.28" role="img" aria-label="LKDN Fitness" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="4"><path d="M282.49,132.72c2.76-1.1,6.12-1.19,9.01-.47l84.73,22.2-284.96,109.42-76.7-24.04,267.92-107.11Z"/><path d="M355.68,407.03l58.65-171.62c1.61-4.86,6.15-10.17,12.1-12.6l63.09-26.55-68.22,197.39c-1.78,4.1-6.88,6.96-12.03,8.76l-53.59,4.62Z"/><path d="M117.84,274.02l280.33-111.42c1-.4,2.1-.46,3.14-.19l83.75,22.92-283.93,113.93c-1.82.73-3.83.84-5.72.32l-77.57-25.56Z"/><path d="M3.61,229.29L87.2,26.15c1.65-4.98,7.79-12.36,13.38-14.12l58.4-7.92-74.06,189.27c-.91,2.12-7.96,8.16-10.41,8.89L3.61,229.29Z"/></g></svg>
+      <div class="tagline">Show up &amp; show out</div>
+    </div>
+    <h1 id="heroTitle">Every athlete<br><em>starts here</em></h1>
+    <p class="lede">Your numbers, your health, and what you're chasing. This is what your program gets built from.</p>
+    <div class="meta-strip">
+      <span>Coached by an <b>Accredited Exercise Scientist</b></span>
+      <span>Accredited with <b>ESSA</b></span>
+      <span><b>In-Person &amp; Online</b> Coaching</span>
+    </div>
+  </div>
+</header>
+
+<section class="choose" id="choose">
+  <div class="choose-in">
+    <svg class="logo" viewBox="0 0 492.87 409.28" role="img" aria-label="LKDN Fitness" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="4"><path d="M282.49,132.72c2.76-1.1,6.12-1.19,9.01-.47l84.73,22.2-284.96,109.42-76.7-24.04,267.92-107.11Z"/><path d="M355.68,407.03l58.65-171.62c1.61-4.86,6.15-10.17,12.1-12.6l63.09-26.55-68.22,197.39c-1.78,4.1-6.88,6.96-12.03,8.76l-53.59,4.62Z"/><path d="M117.84,274.02l280.33-111.42c1-.4,2.1-.46,3.14-.19l83.75,22.92-283.93,113.93c-1.82.73-3.83.84-5.72.32l-77.57-25.56Z"/><path d="M3.61,229.29L87.2,26.15c1.65-4.98,7.79-12.36,13.38-14.12l58.4-7.92-74.06,189.27c-.91,2.12-7.96,8.16-10.41,8.89L3.61,229.29Z"/></g></svg>
+    <p class="choose-eyebrow">Staying LKDN</p>
+    <h2>Three paths.<em>One standard.</em></h2>
+    <p class="choose-hint">Not sure? Start <button type="button" class="hint-link" data-choose="hybrid">Hybrid</button> &mdash; it covers everything.</p>
+    <div class="paths">
+      <div class="pathwrap"><button type="button" class="pathcard" data-choose="hybrid" style="--pc:#53A874;--pcg:83,168,116">
+        <svg class="pc-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <circle class="m1" cx="24" cy="32" r="17" fill="none" stroke="#53A874" stroke-width="3.5"/>
+          <rect class="m2" x="30" y="20" width="24" height="24" fill="none" stroke="#53A874" stroke-width="3.5"/>
+          <circle class="m3" cx="42" cy="32" r="3.4" fill="#53A874"/>
+        </svg>
+        <span class="pc-name">Hybrid<br>Athlete</span>
+        <span class="pc-tag">Run far. Lift heavy.</span>
+        <p class="pc-desc">Running and strength, built together.</p>
+        <span class="pc-go">Start here <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 3l5 5-5 5"/></svg></span>
+      </button></div>
+      <div class="pathwrap"><button type="button" class="pathcard" data-choose="hyrox" style="--pc:#E3A93C;--pcg:227,169,60">
+        <svg class="pc-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <path class="m1" d="M10 14 L26 32 L10 50" fill="none" stroke="#E3A93C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="m2" d="M26 14 L42 32 L26 50" fill="none" stroke="#E3A93C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".62"/>
+          <rect class="m3" x="50" y="12" width="4.5" height="40" fill="#E3A93C"/>
+        </svg>
+        <span class="pc-name">HYROX<br>Athlete</span>
+        <span class="pc-tag">Train for the race.</span>
+        <p class="pc-desc">Pure race prep, start line locked.</p>
+        <span class="pc-go">Start here <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 3l5 5-5 5"/></svg></span>
+      </button></div>
+      <div class="pathwrap"><button type="button" class="pathcard" data-choose="stronger" style="--pc:#5B8FC7;--pcg:91,143,199">
+        <svg class="pc-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect class="m1" x="20" y="12" width="24" height="8" fill="#5B8FC7" opacity=".55"/>
+          <rect class="m2" x="14" y="27" width="36" height="9" fill="#5B8FC7" opacity=".8"/>
+          <rect class="m3" x="8" y="43" width="48" height="10" fill="#5B8FC7"/>
+        </svg>
+        <span class="pc-name">Stronger<br>Athlete</span>
+        <span class="pc-tag">Build muscle. Move big weight.</span>
+        <p class="pc-desc">Hypertrophy, strength and rebuild.</p>
+        <span class="pc-go">Start here <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 3l5 5-5 5"/></svg></span>
+      </button></div>
+    </div>
+  </div>
+</section>
+
+<section class="brief" id="brief">
+  <button type="button" class="repath" id="rePath">&lsaquo; Choose a different path</button>
+  <div class="brief-centre">
+    <div class="brief-eyebrow">What this is</div>
+    <h2>Hybrid coaching<br><em>built off your numbers</em></h2>
+    <div class="centre-mark"></div>
+    <p class="lead">We coach one thing: hybrid athletes. Run far, lift heavy, with a race on the calendar to train towards.</p>
+    <p class="kicker">Beginners welcome — and expected. If you were already fit you wouldn't need a coach.</p>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar"><h3>Accredited</h3><p>Programs written by an Accredited Exercise Scientist. Real periodisation, not a template.</p></div>
+    <div class="pillar"><h3>Measured</h3><p>Free baseline assessment. Re-tested at weeks 4, 8 and 12. The numbers don't lie.</p></div>
+    <div class="pillar"><h3>Concurrent</h3><p>Running and lifting in one block, sequenced so neither one cannibalises the other.</p></div>
+  </div>
+
+  <div class="brief-rule"></div>
+
+  <div class="brief-eyebrow">Coaching packages</div>
+  <h2>Five ways in</h2>
+  <p>12-week blocks, except the in-person pack. Pricing is discussed at your baseline assessment.</p>
+
+  <div class="tier-scale"><span>Most support</span><span>Entry level</span></div>
+  <div class="tiers" id="tiers">
+
+    <div class="tier t1" data-path="hybrid hyrox">
+      <button type="button" class="tier-head" aria-expanded="false" aria-controls="pnl-premium">
+        <div><span class="tier-rank">Tier 01</span><span class="tier-name">Premium</span>
+          <span class="tier-badge">The full ticket</span></div>
+        <div>
+          <p>Twice-weekly coaching and full race-week support.</p>
+          <span class="cue"><span class="cue-t">What's included</span><span class="cue-o">Included below</span> <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg></span>
+        </div>
+      </button>
+      <div class="tier-panel" id="pnl-premium" role="region">
+        <div><div class="tier-panel-in">
+          <div class="pdivide"></div>
+          <div class="pgrid">
+            <div class="pcol"><h4>Best for</h4><p>A dated race and a time you want to beat.</p></div>
+            <div class="pcol"><h4>What you get</h4><ul class="plist"><li>24 coached sessions — two a week</li><li>Everything in <span class="ref refHero" style="color:var(--tint)">Hybrid</span></li><li>Priority scheduling</li><li>Full race-week protocol</li><li>Race-day support in person</li></ul></div>
+            <div class="pcol"><h4>Commitment</h4><div class="pcom">12 weeks<span>4–6 sessions a week</span></div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="tier t2">
+      <button type="button" class="tier-head" aria-expanded="false" aria-controls="pnl-hybrid">
+        <div><span class="tier-rank">Tier 02</span><span class="tier-name" id="heroTierName">Hybrid</span>
+          <span class="tier-badge">Most popular</span></div>
+        <div>
+          <p>Weekly coached sessions plus your full program.</p>
+          <span class="cue"><span class="cue-t">What's included</span><span class="cue-o">Included below</span> <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg></span>
+        </div>
+      </button>
+      <div class="tier-panel" id="pnl-hybrid" role="region">
+        <div><div class="tier-panel-in">
+          <div class="pdivide"></div>
+          <div class="pgrid">
+            <div class="pcol"><h4>Best for</h4><p>Most people. Technique set in person, volume built on your own.</p></div>
+            <div class="pcol"><h4>What you get</h4><ul class="plist"><li>12 coached sessions — one a week</li><li id="t2OnlineRef">Everything in <span class="ref" style="color:var(--tint2)">Online</span></li><li>Facility access included</li><li>Physical re-testing at weeks 4, 8 and 12</li><li>Race-day plan</li></ul></div>
+            <div class="pcol"><h4>Commitment</h4><div class="pcom">12 weeks<span>3–5 sessions a week</span></div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="tier t3" data-path="hybrid hyrox">
+      <button type="button" class="tier-head" aria-expanded="false" aria-controls="pnl-doubles">
+        <div><span class="tier-rank">Tier 03</span><span class="tier-name">Doubles</span>
+          <span class="tier-badge">Train as a pair</span></div>
+        <div>
+          <p><span class="ref refHero" style="color:var(--gold)">Hybrid</span> for two. Shared sessions, separate programs.</p>
+          <span class="cue"><span class="cue-t">What's included</span><span class="cue-o">Included below</span> <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg></span>
+        </div>
+      </button>
+      <div class="tier-panel" id="pnl-doubles" role="region">
+        <div><div class="tier-panel-in">
+          <div class="pdivide"></div>
+          <div class="pgrid">
+            <div class="pcol"><h4>Best for</h4><p>HYROX doubles pairs, couples, and anyone who trains better with someone beside them.</p></div>
+            <div class="pcol"><h4>What you get</h4><ul class="plist"><li>12 shared coached sessions</li><li>Two individual programs — not one shared plan</li><li>Facility access for both</li><li>Re-testing at weeks 4, 8 and 12</li><li>Pair-specific pacing and station splits</li></ul></div>
+            <div class="pcol"><h4>Commitment</h4><div class="pcom">12 weeks<span>3–5 sessions a week each</span></div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="tier t4" data-path="hybrid stronger">
+      <button type="button" class="tier-head" aria-expanded="false" aria-controls="pnl-online">
+        <div><span class="tier-rank">Tier 04</span><span class="tier-name">Online</span>
+          <span class="tier-badge">Train anywhere</span></div>
+        <div>
+          <p>Your full program, coached remotely.</p>
+          <span class="cue"><span class="cue-t">What's included</span><span class="cue-o">Included below</span> <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg></span>
+        </div>
+      </button>
+      <div class="tier-panel" id="pnl-online" role="region">
+        <div><div class="tier-panel-in">
+          <div class="pdivide"></div>
+          <div class="pgrid">
+            <div class="pcol"><h4>Best for</h4><p>Anyone outside Sydney, or already confident on the gym floor.</p></div>
+            <div class="pcol"><h4>What you get</h4><ul class="plist"><li>Individualised 12-week program</li><li>Weekly check-ins with adjustments</li><li>Video form review</li><li>Nutrition targets by training block</li><li>Direct messaging between sessions</li></ul></div>
+            <div class="pcol"><h4>Commitment</h4><div class="pcom">12 weeks<span>3–5 sessions a week</span></div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="tier t5" data-path="hybrid stronger">
+      <button type="button" class="tier-head" aria-expanded="false" aria-controls="pnl-pack">
+        <div><span class="tier-rank">Tier 05</span><span class="tier-name">10-Session Pack</span>
+          <span class="tier-badge">In-person only</span></div>
+        <div>
+          <p>Ten coached sessions. No programming attached.</p>
+          <span class="cue"><span class="cue-t">What's included</span><span class="cue-o">Included below</span> <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg></span>
+        </div>
+      </button>
+      <div class="tier-panel" id="pnl-pack" role="region">
+        <div><div class="tier-panel-in">
+          <div class="pdivide"></div>
+          <div class="pgrid">
+            <div class="pcol"><h4>Best for</h4><p>Testing the water before committing to a full block.</p></div>
+            <div class="pcol"><h4>What you get</h4><ul class="plist"><li>10 coached sessions</li><li>Use any time across 12 weeks</li><li>Facility access included</li><li>Written notes after each session</li><li>Upgrade to <span class="ref refHero" style="color:var(--gold)">Hybrid</span> any time</li></ul></div>
+            <div class="pcol"><h4>Commitment</h4><div class="pcom">Flexible<span>No fixed weekly minimum</span></div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brief-rule"></div>
+
+  <div class="brief-eyebrow">How it runs</div>
+  <h2>From here to session one</h2>
+  <div class="flow">
+    <div class="flow-step"><b>01</b><span>Complete this intake.</span></div>
+    <div class="flow-step"><b>02</b><span>We book your free baseline assessment.</span></div>
+    <div class="flow-step"><b>03</b><span>Movement screen, benchmarks, one-page report.</span></div>
+    <div class="flow-step"><b>04</b><span>Pick a package. Your program gets written.</span></div>
+    <div class="flow-step"><b>05</b><span>Weekly check-ins. Re-test at 4, 8 and 12.</span></div>
+  </div>
+
+  <div class="brief-cta">
+    <div>
+      <h3>Ready when you are</h3>
+      <p>Eight stations, about ten minutes. Health screening is required before anyone trains with us.</p>
+    </div>
+    <button type="button" id="startBtn" class="huge">Start the intake<span class="arw" aria-hidden="true">&rarr;</span></button>
+  </div>
+</section>
+
+<div class="track-wrap">
+  <div class="track">
+    <div class="track-head">
+      <div class="track-label">Course progress</div>
+      <div class="track-now" id="nowLabel">Station 01 — Check-in</div>
+    </div>
+    <div class="course" id="course">
+      <div class="course-fill" id="fill"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+<form id="intake" novalidate>
+
+<!-- Formspree helpers: honeypot spam trap + dynamic email subject -->
+<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+<input type="hidden" name="_subject" id="fsSubject" value="LKDN FITNESS intake">
+<input type="hidden" name="s0_athlete_path" id="athletePath" value="">
+
+<!-- ============ 01 ============ -->
+<section class="station on" data-name="Check-in">
+  <div class="st-num">Station 01</div>
+  <h2 class="st-title">Check-in</h2>
+  <p class="st-sub">The basics, so I know who I'm building this for and how to reach you.</p>
+  <div class="rule"></div>
+
+  <div class="panel">
+    <div class="grid two">
+      <label class="f"><span class="lab">Full name</span><input type="text" name="s1_full_name" required autocomplete="name"></label>
+      <label class="f"><span class="lab">Email</span><input type="email" name="s1_email" required autocomplete="email"></label>
+      <label class="f"><span class="lab">Mobile</span><input type="tel" name="s1_mobile" required autocomplete="tel"></label>
+      <label class="f"><span class="lab">Date of birth</span><input type="date" name="s1_dob" required></label>
+      <label class="f"><span class="lab">Suburb</span><input type="text" name="s1_suburb" required></label>
+      <label class="f"><span class="lab">Sex at birth <span class="opt">— for training norms</span></span>
+        <select name="s1_sex_at_birth" required>
+          <option value="">Select</option><option>Female</option><option>Male</option><option>Prefer not to say</option>
+        </select></label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Which coaching style would best suit you?</div>
+    <div class="tiles">
+      <label class="tile"><input type="radio" name="s1_coaching_style" value="In-person coaching" required><span>In-person coaching<small>Coached sessions on the floor</small></span></label>
+      <label class="tile"><input type="radio" name="s1_coaching_style" value="Online coaching"><span>Online coaching<small>Programming and check-ins</small></span></label>
+      <label class="tile"><input type="radio" name="s1_coaching_style" value="Both — in-person and online"><span>Both<small>Sessions plus programming</small></span></label>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <label class="f full"><span class="lab">Where are you currently training?</span>
+        <input type="text" name="s1_current_training_location" placeholder="Gym name and suburb, home setup, or 'not training right now'" required></label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Preferred units — every question adjusts to this</div>
+    <div class="tiles">
+      <label class="tile"><input type="radio" name="s1_preferred_units" value="Metric" checked><span>Metric<small>kg &middot; km &middot; cm &middot; min/km</small></span></label>
+      <label class="tile"><input type="radio" name="s1_preferred_units" value="Imperial"><span>Imperial<small>lb &middot; mi &middot; ft &middot; min/mi</small></span></label>
+    </div>
+  </div>
+  <div class="nav"><button type="button" class="ghost" data-back hidden>Back</button><button type="button" data-next>Continue</button></div>
+  <div class="err">Fill in the required fields to continue.</div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section class="station" data-name="Body metrics">
+  <div class="st-num">Station 02</div>
+  <h2 class="st-title">Body metrics</h2>
+  <p class="st-sub">Estimates are fine. These set your loading, your paces and your nutrition targets — nothing here is a judgement.</p>
+  <div class="rule"></div>
+
+  <div class="panel">
+    <div class="grid">
+      <label class="f"><span class="lab" data-u="heightLabel">Height (cm)</span><input type="text" inputmode="decimal" name="s2_height" data-u-ph="heightPh" placeholder="e.g. 178" required></label>
+      <label class="f"><span class="lab" data-u="weightLabel">Weight (kg)</span><input type="number" name="s2_weight" min="30" max="550" step="0.1" data-u-ph="weightPh" placeholder="e.g. 82" required></label>
+      <label class="f"><span class="lab">Resting heart rate <span class="opt">— optional</span></span><input type="number" name="s2_resting_hr" min="30" max="120"><span class="hint">Measured first thing in the morning.</span></label>
+      <label class="f"><span class="lab"><span data-u="waistLabel">Waist (cm)</span> <span class="opt">— optional</span></span><input type="number" name="s2_waist" min="15" max="200" data-u-ph="waistPh" placeholder="e.g. 84"></label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Body composition goal</div>
+    <div class="tiles">
+      <label class="tile"><input type="radio" name="s2_bodycomp_goal" value="Lose fat" required><span>Lose fat</span></label>
+      <label class="tile"><input type="radio" name="s2_bodycomp_goal" value="Build muscle"><span>Build muscle</span></label>
+      <label class="tile"><input type="radio" name="s2_bodycomp_goal" value="Recomposition"><span>Recomposition<small>Both, gradually</small></span></label>
+      <label class="tile"><input type="radio" name="s2_bodycomp_goal" value="Maintain — performance only"><span>Maintain<small>Performance is the goal</small></span></label>
+    </div>
+  </div>
+  <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" data-next>Continue</button></div>
+  <div class="err">Fill in the required fields to continue.</div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section class="station" data-name="Training history">
+  <div class="st-num">Station 03</div>
+  <h2 class="st-title">Training history</h2>
+  <p class="st-sub">Where you're starting from. Be honest rather than aspirational — an overstated baseline is the fastest route to an injury.</p>
+  <div class="rule"></div>
+
+  <div class="panel">
+    <div class="grid two">
+      <label class="f"><span class="lab">How long have you trained consistently?</span>
+        <select name="s3_training_experience" required>
+          <option value="">Select</option><option>Complete beginner</option><option>Under 6 months</option>
+          <option>6–12 months</option><option>1–3 years</option><option>3–5 years</option><option>5+ years</option>
+          <option>Returning after a long break</option>
+        </select></label>
+      <label class="f"><span class="lab">Sessions per week right now</span>
+        <select name="s3_sessions_per_week_now" required>
+          <option value="">Select</option><option>0</option><option>1–2</option><option>3–4</option><option>5–6</option><option>7+</option>
+        </select></label>
+      <label class="f"><span class="lab">Strength sessions per week</span>
+        <select name="s3_strength_sessions_week" required>
+          <option value="">Select</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4+</option>
+        </select></label>
+      <label class="f"><span class="lab" data-u="runWkLabel">Running volume per week (km)</span>
+        <select name="s3_running_volume_week" id="runWkSel" required>
+          <option value="">Select</option>
+        </select></label>
+      <label class="f"><span class="lab">Sessions per week you can realistically commit to</span>
+        <select name="s3_sessions_committable" required>
+          <option value="">Select</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+        </select></label>
+      <label class="f"><span class="lab">Equipment access</span>
+        <select name="s3_equipment_access" required>
+          <option value="">Select</option><option>Full commercial gym</option><option>Gym with HYROX equipment</option>
+          <option>Home gym — limited</option><option>Bodyweight and outdoors only</option>
+        </select></label>
+      <label class="f full"><span class="lab">Sports or activities you already do <span class="opt">— optional</span></span>
+        <input type="text" name="s3_other_sports" placeholder="Football, F45, boxing, swimming…"></label>
+    </div>
+  </div>
+  <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" data-next>Continue</button></div>
+  <div class="err">Fill in the required fields to continue.</div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section class="station" data-name="Your numbers">
+  <div class="st-num">Station 04</div>
+  <h2 class="st-title">Your numbers</h2>
+  <p class="st-sub">Only what you actually know. Leave the rest blank — we'll set the missing ones at your baseline assessment.</p>
+  <div class="rule"></div>
+
+  <div class="panel" data-path="hybrid hyrox">
+    <div class="panel-h">Running — personal bests or best estimate</div>
+    <div class="grid">
+      <label class="f"><span class="lab">5 km</span><input type="text" name="s4_pb_5k" list="dl_5k" placeholder="e.g. 26:40"></label>
+      <label class="f"><span class="lab">10 km</span><input type="text" name="s4_pb_10k" list="dl_10k" placeholder="e.g. 55:00"></label>
+      <label class="f"><span class="lab">Half marathon</span><input type="text" name="s4_pb_half" list="dl_half" placeholder="e.g. 2:05:00"></label>
+      <label class="f"><span class="lab">Marathon</span><input type="text" name="s4_pb_marathon" list="dl_full" placeholder="e.g. 4:30:00"></label>
+      <label class="f"><span class="lab">Longest run in the last 3 months</span><input type="text" name="s4_longest_recent_run" list="dl_longrun" data-u-ph="longPh" placeholder="e.g. 14 km"></label>
+      <label class="f"><span class="lab">Comfortable easy pace</span><input type="text" name="s4_easy_pace" list="dl_pace" data-u-ph="pacePh" placeholder="e.g. 6:30 /km"></label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Strength — working weights or estimated 1RM</div>
+    <div class="grid">
+      <label class="f"><span class="lab" data-u="squatLabel">Back squat (kg)</span><input type="text" name="s4_back_squat" list="dl_lift" data-u-ph="squatPh" placeholder="e.g. 80"></label>
+      <label class="f"><span class="lab" data-u="dlLabel">Deadlift (kg)</span><input type="text" name="s4_deadlift" list="dl_lift" data-u-ph="dlPh" placeholder="e.g. 120"></label>
+      <label class="f"><span class="lab" data-u="benchLabel">Bench press (kg)</span><input type="text" name="s4_bench_press" list="dl_lift" data-u-ph="benchPh" placeholder="e.g. 60"></label>
+      <label class="f"><span class="lab">Strict push-ups, max reps</span><input type="text" name="s4_max_pushups" list="dl_reps" placeholder="e.g. 20"></label>
+    </div>
+  </div>
+
+  <div class="panel" data-path="hybrid hyrox">
+    <div class="panel-h">HYROX stations — if you've tried them</div>
+    <div class="grid">
+      <label class="f"><span class="lab">1000 m row</span><input type="text" name="s4_row_1k" list="dl_erg" placeholder="e.g. 4:05"></label>
+      <label class="f"><span class="lab">1000 m SkiErg</span><input type="text" name="s4_ski_1k" list="dl_erg" placeholder="e.g. 4:20"></label>
+      <label class="f"><span class="lab">Wall balls — max unbroken</span><input type="text" name="s4_wallballs_unbroken" list="dl_reps" placeholder="e.g. 25"></label>
+      <label class="f"><span class="lab">Have you raced HYROX before?</span>
+        <select name="s4_hyrox_before"><option value="">Select</option><option>No, never</option><option>Yes, once</option><option>Yes, multiple times</option></select></label>
+      <label class="f full"><span class="lab">Previous HYROX finish time <span class="opt">— if applicable</span></span><input type="text" name="s4_hyrox_pb" list="dl_hyrox" placeholder="e.g. 1:24:30"></label>
+    </div>
+  </div>
+  <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" data-next>Continue</button></div>
+  <div class="err">Something's not right — check the fields above.</div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section class="station" data-name="The goal">
+  <div class="st-num">Station 05</div>
+  <h2 class="st-title">The goal</h2>
+  <p class="st-sub">Pick what you're chasing — one is ideal, more is allowed. Your first pick becomes the primary, and the program gets sequenced around it.</p>
+  <div class="rule"></div>
+
+  <div class="panel">
+    <div class="panel-h">Your goals — first pick becomes your primary</div>
+    <div class="flag goalflag" id="goalFlag">
+      <h4>One focus moves fastest</h4>
+      <p id="goalFlagText"></p>
+    </div>
+    <div class="goals" data-goalgroup id="goalGroup">
+      <label class="gtile" data-path="hybrid" style="--acc:#111111"><input type="checkbox" name="s5_goals" value="Couch to Hybrid — general"><span class="gt"><b class="gname">Couch to Hybrid</b><i class="gdesc">Start from scratch, no race yet</i><em class="gprim">Primary</em></span></label>
+      <div class="gcat" id="gcatHyrox">
+        <button type="button" class="gcat-head" aria-expanded="false" aria-controls="gcatHyrox-panel">
+          <span class="gcat-name">HYROX</span>
+          <span class="gcat-count" hidden></span>
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg>
+        </button>
+        <div class="gcat-panel" id="gcatHyrox-panel"><div class="gcat-in">
+      <label class="gtile" data-path="hybrid" style="--acc:#E3A93C"><input type="checkbox" name="s5_goals" value="HYROX race prep"><span class="gt"><b class="gname">HYROX race prep</b><i class="gdesc">8 runs, 8 stations</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" data-path="hyrox" style="--acc:#C8891B"><input type="checkbox" name="s5_goals" value="First HYROX — finish strong"><span class="gt"><b class="gname">First HYROX</b><i class="gdesc">Get to the line, finish strong</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" data-path="hyrox" style="--acc:#A33B2E"><input type="checkbox" name="s5_goals" value="HYROX PB — beat my time"><span class="gt"><b class="gname">Beat my HYROX time</b><i class="gdesc">You&#8217;ve raced. Now go faster.</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" data-path="hyrox" style="--acc:#8A6D2F"><input type="checkbox" name="s5_goals" value="HYROX Doubles — race as a pair"><span class="gt"><b class="gname">HYROX Doubles</b><i class="gdesc">Shared runs, split stations</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" data-path="hyrox" style="--acc:#3E4A5C"><input type="checkbox" name="s5_goals" value="Fix my weakest stations"><span class="gt"><b class="gname">Fix my weak stations</b><i class="gdesc">Ergs, sled, wall balls &mdash; targeted</i><em class="gprim">Primary</em></span></label>
+        </div></div>
+      </div>
+      <div class="gcat" data-path="hybrid" id="gcatRun">
+        <button type="button" class="gcat-head" aria-expanded="false" aria-controls="gcatRun-panel">
+          <span class="gcat-name">Running</span>
+          <span class="gcat-count" hidden></span>
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg>
+        </button>
+        <div class="gcat-panel" id="gcatRun-panel"><div class="gcat-in">
+      <label class="gtile" style="--acc:#C8891B"><input type="checkbox" name="s5_goals" value="Increase long run distance"><span class="gt"><b class="gname">Increase my long run</b><i class="gdesc">Build endurance from where I am</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" style="--acc:#A33B2E"><input type="checkbox" name="s5_goals" value="Faster 5 km"><span class="gt"><b class="gname">Faster 5 km</b><i class="gdesc">Pure speed</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" style="--acc:#8A6D2F"><input type="checkbox" name="s5_goals" value="First or faster 10 km"><span class="gt"><b class="gname">First or faster 10 km</b><i class="gdesc">Endurance and pace together</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" style="--acc:#5E6B4A"><input type="checkbox" name="s5_goals" value="Half marathon prep"><span class="gt"><b class="gname">Half marathon</b><i class="gdesc">21.1 km, done properly</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" style="--acc:#3E4A5C"><input type="checkbox" name="s5_goals" value="Full marathon prep"><span class="gt"><b class="gname">Full marathon</b><i class="gdesc">42.2 km — the long build</i><em class="gprim">Primary</em></span></label>
+        </div></div>
+      </div>
+      <div class="gcat" data-path="hybrid" id="gcatLift">
+        <button type="button" class="gcat-head" aria-expanded="false" aria-controls="gcatLift-panel">
+          <span class="gcat-name">Lift</span>
+          <span class="gcat-count" hidden></span>
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg>
+        </button>
+        <div class="gcat-panel" id="gcatLift-panel"><div class="gcat-in">
+      <label class="gtile" style="--acc:#866A50"><input type="checkbox" name="s5_goals" value="Hypertrophy"><span class="gt"><b class="gname">Hypertrophy</b><i class="gdesc">Build muscle size</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" style="--acc:#6B4E2E"><input type="checkbox" name="s5_goals" value="Build strength while running"><span class="gt"><b class="gname">Stronger, still running</b><i class="gdesc">Concurrent training</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" style="--acc:#4E6E6A"><input type="checkbox" name="s5_goals" value="Body recomposition"><span class="gt"><b class="gname">Body recomposition</b><i class="gdesc">Look and perform better</i><em class="gprim">Primary</em></span></label>
+        </div></div>
+      </div>
+      <label class="gtile" data-path="stronger" style="--acc:#2E5F8F"><input type="checkbox" name="s5_goals" value="Hypertrophy"><span class="gt"><b class="gname">Hypertrophy</b><i class="gdesc">Build muscle size</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" data-path="stronger" style="--acc:#1F4568"><input type="checkbox" name="s5_goals" value="Strength PBs — lift heavier"><span class="gt"><b class="gname">Strength PBs</b><i class="gdesc">Squat, bench, deadlift &mdash; move big weight</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" data-path="stronger" style="--acc:#4E6E6A"><input type="checkbox" name="s5_goals" value="Body recomposition"><span class="gt"><b class="gname">Body recomposition</b><i class="gdesc">Look and perform better</i><em class="gprim">Primary</em></span></label>
+      <label class="gtile" data-path="stronger" style="--acc:#866A50"><input type="checkbox" name="s5_goals" value="Return from injury"><span class="gt"><b class="gname">Return from injury</b><i class="gdesc">Rebuild safely, then build up</i><em class="gprim">Primary</em></span></label>
+    </div>
+    <input type="hidden" name="s5_primary_goal" id="primaryGoal" value="">
+  </div>
+
+  <div class="panel" data-path="stronger" hidden>
+    <div class="panel-h">Anything else in your week?</div>
+    <div class="grid two">
+      <label class="f full"><span class="lab">Do you do any other forms of training? <span class="opt">&mdash; running, team sport, classes, martial arts</span></span>
+        <input type="text" name="s5_other_training" placeholder="e.g. social football on Sundays, or 'N/A'"></label>
+    </div>
+  </div>
+
+  <div class="panel" id="hyroxPanel" hidden>
+    <div class="panel-h">HYROX detail</div>
+    <div class="grid">
+      <label class="f"><span class="lab">Division</span>
+        <select name="s5_hyrox_division"><option value="">Select</option><option>Open — Solo</option><option>Pro — Solo</option>
+          <option>Doubles</option><option>Doubles Pro</option><option>Relay</option><option>Not decided</option></select></label>
+      <label class="f"><span class="lab">Which race?</span>
+        <select name="s5_hyrox_race"><option value="">Select</option><option>Melbourne — 9–13 Dec 2026</option>
+          <option>Auckland — Jan 2027</option><option>Brisbane — 2027</option><option>Sydney — 2027</option><option>Other / undecided</option></select></label>
+      <label class="f full"><span class="lab">Target finish time <span class="opt">— optional</span></span><input type="text" name="s5_hyrox_target" list="dl_hyroxTarget" placeholder="e.g. SUB 1:30"></label>
+    </div>
+  </div>
+
+  <div class="panel" id="racePanel" hidden>
+    <div class="panel-h">Your race or deadline</div>
+    <div class="grid two">
+      <label class="f"><span class="lab">Event name <span class="opt">— if you have one</span></span><input type="text" name="s5_event_name" placeholder="Sydney Marathon, HYROX Melbourne…"></label>
+      <label class="f"><span class="lab">Event date <span class="opt">— optional</span></span><input type="date" name="s5_event_date"></label>
+      <label class="f"><span class="lab">Target time or outcome <span class="opt">— optional</span></span><input type="text" name="s5_target_outcome" list="dl_target" placeholder="e.g. SUB 4 hours"></label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Why this, why now?</div>
+    <div class="grid two">
+      <label class="f full"><span class="lab">What made you decide to do something about it?</span>
+        <textarea name="s5_motivation" required placeholder="This is the part your coach actually reads closely."></textarea></label>
+    </div>
+  </div>
+  <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" data-next>Continue</button></div>
+  <div class="err">Choose a primary goal and tell me why before continuing.</div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section class="station" data-name="Health screen">
+  <div class="st-num">Station 06</div>
+  <h2 class="st-title">Health screen</h2>
+  <p class="st-sub">These are the standard pre-exercise screening questions used across the Australian exercise science profession. Answer honestly — if you're unsure about any of them, answer yes.</p>
+  <div class="rule"></div>
+
+  <div class="note"><p><strong>Nobody gets excluded for a yes.</strong> A yes means we take one extra step — usually a quick word with your GP — before we start loading you up. It's how the program stays safe.</p></div>
+
+  <div class="panel">
+    <div class="panel-h">Pre-exercise screening</div>
+    <div id="apss">
+      <div class="q"><div class="q-t"><span class="q-n">01</span>Has your doctor ever told you that you have a heart condition, or have you ever suffered a stroke?</div>
+        <div class="yn"><label><input type="radio" name="s6_heart_condition" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_heart_condition" value="no"><span>No</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">02</span>Do you ever experience unexplained pain or discomfort in your chest at rest or during physical activity?</div>
+        <div class="yn"><label><input type="radio" name="s6_chest_pain" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_chest_pain" value="no"><span>No</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">03</span>Do you ever feel faint, dizzy, or lose balance during physical activity?</div>
+        <div class="yn"><label><input type="radio" name="s6_dizziness" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_dizziness" value="no"><span>No</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">04</span>Have you had an asthma attack requiring immediate medical attention at any time in the last 12 months?</div>
+        <div class="yn"><label><input type="radio" name="s6_asthma_12mo" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_asthma_12mo" value="no"><span>No</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">05</span>If you have diabetes (type 1 or type 2), have you had trouble controlling your blood glucose in the last 3 months?</div>
+        <div class="yn"><label><input type="radio" name="s6_blood_glucose" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_blood_glucose" value="no"><span>No</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">06</span>Do you have any diagnosed muscle, bone or joint problem that you've been told could be made worse by physical activity?</div>
+        <div class="yn"><label><input type="radio" name="s6_musculoskeletal" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_musculoskeletal" value="no"><span>No</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">07</span>Do you have any other medical condition that may make it dangerous for you to participate in physical activity?</div>
+        <div class="yn"><label><input type="radio" name="s6_other_condition" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_other_condition" value="no"><span>No</span></label></div></div>
+    </div>
+    <div class="flag" id="apssFlag">
+      <h4>Medical clearance needed before we start</h4>
+      <p>You've answered yes to at least one screening question. Before your first session you'll need written clearance from your GP, or we agree a documented modification in writing. Keep going with the form — I'll walk you through it when we speak.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Additional screening</div>
+    <div id="extra">
+      <div class="q"><div class="q-t"><span class="q-n">08</span>Are you currently pregnant, or have you given birth in the last 12 months?</div>
+        <div class="yn"><label><input type="radio" name="s6_pregnancy" value="yes"><span>Yes</span></label><label><input type="radio" name="s6_pregnancy" value="no"><span>No</span></label><label><input type="radio" name="s6_pregnancy" value="n/a"><span>N/A</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">09</span>Has a medical practitioner ever told you to avoid or modify physical activity?</div>
+        <div class="yn"><label><input type="radio" name="s6_advised_modify" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_advised_modify" value="no"><span>No</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">10</span>Do you have high blood pressure or high cholesterol, diagnosed or being treated?</div>
+        <div class="yn"><label><input type="radio" name="s6_bp_cholesterol" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_bp_cholesterol" value="no"><span>No</span></label><label><input type="radio" name="s6_bp_cholesterol" value="unsure"><span>Unsure</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">11</span>Is there a family history of heart disease or sudden cardiac death before age 55 (male) or 65 (female)?</div>
+        <div class="yn"><label><input type="radio" name="s6_family_cardiac" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_family_cardiac" value="no"><span>No</span></label><label><input type="radio" name="s6_family_cardiac" value="unsure"><span>Unsure</span></label></div></div>
+      <div class="q"><div class="q-t"><span class="q-n">12</span>Have you had a relative-energy or disordered-eating issue, or do you currently restrict food intake?</div>
+        <div class="yn"><label><input type="radio" name="s6_energy_eating" value="yes" required><span>Yes</span></label><label><input type="radio" name="s6_energy_eating" value="no"><span>No</span></label><label><input type="radio" name="s6_energy_eating" value="rather not say"><span>Skip</span></label></div></div>
+    </div>
+  </div>
+  <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" data-next>Continue</button></div>
+  <div class="err">Answer every screening question to continue.</div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section class="station" data-name="Medical detail">
+  <div class="st-num">Station 07</div>
+  <h2 class="st-title">Medical &amp; lifestyle</h2>
+  <p class="st-sub">The detail behind your answers, plus the recovery factors that decide how much training you can actually absorb.</p>
+  <div class="rule"></div>
+
+  <div class="panel">
+    <div class="panel-h">History</div>
+    <div class="grid two">
+      <label class="f full"><span class="lab">Current or recurring injuries, and where</span>
+        <textarea name="s7_injuries" placeholder="Knee, lower back, shoulder — what it is, how long, what aggravates it. Write 'N/A' if none."></textarea></label>
+      <label class="f full"><span class="lab">Past surgeries or significant injuries</span>
+        <textarea name="s7_surgeries" placeholder="Include the year. Write 'N/A' if none."></textarea></label>
+      <label class="f"><span class="lab">Current medications</span><input type="text" name="s7_medications" placeholder="Or 'N/A'"></label>
+      <label class="f"><span class="lab">Allergies</span><input type="text" name="s7_allergies" placeholder="Or 'N/A'"></label>
+      <label class="f"><span class="lab">Are you currently seeing a physio, GP or specialist about anything?</span>
+        <select name="s7_under_care"><option value="">Select</option><option>No</option><option>Yes — physiotherapist</option>
+          <option>Yes — GP</option><option>Yes — specialist</option><option>Yes — multiple</option></select></label>
+      <label class="f"><span class="lab">Diagnosed hypermobility or joint instability?</span>
+        <select name="s7_hypermobility"><option value="">Select</option><option>No</option><option>Yes</option><option>Suspected, not diagnosed</option></select></label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Recovery capacity</div>
+    <div class="grid">
+      <label class="f"><span class="lab">Average sleep per night</span>
+        <select name="s7_sleep" required><option value="">Select</option><option>Under 5 hours</option><option>5–6 hours</option>
+          <option>6–7 hours</option><option>7–8 hours</option><option>8+ hours</option></select></label>
+      <label class="f"><span class="lab">Stress level day to day</span>
+        <select name="s7_stress" required><option value="">Select</option><option>Low</option><option>Moderate</option>
+          <option>High</option><option>Very high</option></select></label>
+      <label class="f"><span class="lab">Your job is mostly</span>
+        <select name="s7_occupation" required><option value="">Select</option><option>Desk-based / sedentary</option>
+          <option>Mixed sitting and standing</option><option>On your feet all day</option><option>Physically demanding / manual</option>
+          <option>Shift work</option></select></label>
+      <label class="f"><span class="lab">Alcohol</span>
+        <select name="s7_alcohol" required><option value="">Select</option><option>None</option><option>Occasional — social only</option>
+          <option>1–4 drinks a week</option><option>5–10 drinks a week</option><option>10+ drinks a week</option></select></label>
+      <label class="f"><span class="lab">Smoking or vaping</span>
+        <select name="s7_smoking" required><option value="">Select</option><option>Never</option><option>Former</option><option>Current</option></select></label>
+      <label class="f"><span class="lab">How would you describe your current eating?</span>
+        <select name="s7_eating" required><option value="">Select</option><option>Mostly wholefoods, consistent</option>
+          <option>Reasonable, but inconsistent</option><option>Lots of takeaway / convenience</option><option>I have no idea what I'm doing</option></select></label>
+      <label class="f full"><span class="lab">Dietary requirements <span class="opt">— optional</span></span>
+        <input type="text" name="s7_dietary_requirements" placeholder="Vegetarian, halal, coeliac, intolerances…"></label>
+    </div>
+  </div>
+  <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" data-next>Continue</button></div>
+  <div class="err">Fill in the required fields to continue.</div>
+</section>
+
+<!-- ============ 08 ============ -->
+<section class="station" data-name="Logistics &amp; consent">
+  <div class="st-num">Station 08</div>
+  <h2 class="st-title">Logistics &amp; consent</h2>
+  <p class="st-sub">Last one. When you can train, what you're after, and the declarations I need before we start.</p>
+  <div class="rule"></div>
+
+  <div class="panel">
+    <div class="panel-h">Availability</div>
+    <div class="grid two">
+      <label class="f"><span class="lab">Best times for in-person sessions</span>
+        <select name="s8_availability"><option value="">Select</option><option>Weekday mornings</option><option>Weekday afternoons</option>
+          <option>Weekday evenings</option><option>Weekends</option><option>Flexible — most times work</option>
+          <option>Online only — not applicable</option></select></label>
+      <label class="f"><span class="lab">Which package are you interested in?</span>
+        <select name="s8_package_interest"><option value="">Select</option><option>Online</option>
+          <option>Hybrid</option><option>Premium</option>
+          <option>Doubles</option><option>10-session in-person package</option><option>Not sure yet — talk me through it</option></select></label>
+      <label class="f"><span class="lab">How did you hear about LKDN FITNESS?</span>
+        <select name="s8_lead_source"><option value="">Select</option><option>At my gym</option><option>Instagram</option>
+          <option>Referral from a friend</option><option>LKDN FITNESS run club</option><option>At a race</option><option>Other</option></select></label>
+      <label class="f"><span class="lab">When do you want to start?</span>
+        <select name="s8_start_timing"><option value="">Select</option><option>This week</option><option>Within 2 weeks</option>
+          <option>Within a month</option><option>Just exploring for now</option></select></label>
+      <label class="f full"><span class="lab">Anything else I should know? <span class="opt">— optional</span></span>
+        <textarea name="s8_notes"></textarea></label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Declarations</div>
+    <div class="chk"><input type="checkbox" id="c1" name="s8_decl_accuracy" required>
+      <label for="c1">Everything I've entered is true and complete, and I'll tell my LKDN FITNESS coach in writing if my health, injuries or medications change.</label></div>
+    <div class="chk"><input type="checkbox" id="c2" name="s8_decl_risk" required>
+      <label for="c2">I understand that hybrid training carries a risk of injury, and that a full risk warning and waiver will be provided for me to read and sign before my first session.</label></div>
+    <div class="chk"><input type="checkbox" id="c3" name="s8_decl_clearance" required>
+      <label for="c3">If I've answered yes to any screening question, I understand I may need written medical clearance before starting.</label></div>
+    <div class="chk"><input type="checkbox" id="c4" name="s8_decl_privacy" required>
+      <label for="c4">I consent to LKDN FITNESS collecting and securely storing this information to screen, design and deliver my program. It won't be shared without my consent except to a medical practitioner or emergency service in an emergency, or where required by law.</label></div>
+    <div class="chk"><input type="checkbox" id="c5" name="s8_marketing_optin">
+      <label for="c5"><em>Optional</em> — send me LKDN FITNESS training tips, run club dates and race announcements. You can unsubscribe any time.</label></div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="ghost" data-back>Back</button>
+    <button type="submit" class="big" id="submitBtn">Send my intake</button>
+  </div>
+  <div class="err">Tick the required declarations to send.</div>
+</section>
+
+<datalist id="dl_pace"></datalist>
+<datalist id="dl_longrun"></datalist>
+<datalist id="dl_lift"></datalist>
+<datalist id="dl_5k"></datalist>
+<datalist id="dl_10k"></datalist>
+<datalist id="dl_half"></datalist>
+<datalist id="dl_full"></datalist>
+<datalist id="dl_erg"></datalist>
+<datalist id="dl_reps"></datalist>
+<datalist id="dl_hyrox"></datalist>
+<datalist id="dl_hyroxTarget"></datalist>
+<datalist id="dl_target"></datalist>
+</form>
+
+<section id="done">
+  <div class="done-card">
+    <div class="tick">✓</div>
+    <p class="done-eyebrow">Intake received</p>
+    <h2 class="done-title">You're locked in</h2>
+    <div class="done-mark"></div>
+    <p class="done-lead">Your LKDN Coach will be in contact with you within <strong>24–48 hours</strong> to book your free baseline assessment.</p>
+    <div class="done-rec" id="doneRec" hidden>
+      <p class="done-rec-eyebrow" id="doneRecEyebrow">Your best fit</p>
+      <p class="done-rec-name" id="doneRecName"></p>
+      <p class="done-rec-why" id="doneRecWhy"></p>
+    </div>
+    <div class="done-steps">
+      <div class="done-step"><b>01</b><span>Your intake gets reviewed by your coach</span></div>
+      <div class="done-step"><b>02</b><span>Baseline assessment booked — movement screen, benchmarks, one-page report</span></div>
+      <div class="done-step"><b>03</b><span>Your program gets built off your numbers</span></div>
+    </div>
+    <p class="done-note">Keep an eye on your email and phone — that's how we'll reach you. Nothing else to do for now.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <span>LKDN FITNESS — Three paths. One standard.</span>
+    <span>Coaching delivered by an Accredited Exercise Scientist (ESSA)</span>
+    <span>Strathfield NSW &amp; online worldwide</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ====== CONFIGURE THIS ======================================
+     Paste your Formspree / Basin / Netlify Forms endpoint below.
+     Leave empty ("") to fall back to opening the user's email app.
+     ============================================================ */
+  var ENDPOINT = "https://formspree.io/f/mdennqqq";
+  var FALLBACK_EMAIL = "lachlanmoun02@gmail.com";
+
+  var form     = document.getElementById('intake');
+  var stations = Array.prototype.slice.call(form.querySelectorAll('.station'));
+  var course   = document.getElementById('course');
+  var fill     = document.getElementById('fill');
+  var nowLabel = document.getElementById('nowLabel');
+  var current  = 0;
+
+  /* ---- build course nodes ---- */
+  stations.forEach(function(s,i){
+    var n = document.createElement('div');
+    n.className = 'node';
+    n.innerHTML = '<span>' + String(i+1).padStart(2,'0') + '</span>';
+    course.appendChild(n);
+  });
+  var nodes = Array.prototype.slice.call(course.querySelectorAll('.node'));
+
+  function paint(){
+    nodes.forEach(function(n,i){
+      n.classList.toggle('done', i < current);
+      n.classList.toggle('active', i === current);
+    });
+    fill.style.width = (current / (stations.length - 1) * 100) + '%';
+    nowLabel.textContent = 'Station ' + String(current+1).padStart(2,'0') +
+                           ' — ' + stations[current].dataset.name;
+  }
+
+  function show(i){
+    stations[current].classList.remove('on');
+    current = i;
+    stations[current].classList.add('on');
+    paint();
+    var y = document.querySelector('.track-wrap').offsetTop;
+    window.scrollTo({ top: y - 4, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }
+
+  /* ---- validation for one station ---- */
+  function validate(section){
+    var ok = true, firstBad = null;
+    var fields = section.querySelectorAll('input,select,textarea');
+    var seenRadio = {};
+    Array.prototype.forEach.call(fields, function(el){
+      if(el.disabled || el.closest('[hidden]')) return;
+      if(!el.required) return;
+      if(el.type === 'radio'){
+        if(seenRadio[el.name]) return;
+        seenRadio[el.name] = true;
+        if(!section.querySelector('input[name="'+el.name+'"]:checked')){
+          ok = false; firstBad = firstBad || el;
+        }
+        return;
+      }
+      if(el.type === 'checkbox'){
+        if(!el.checked){ ok = false; firstBad = firstBad || el; }
+        return;
+      }
+      if(!el.value.trim() || !el.checkValidity()){
+        ok = false; firstBad = firstBad || el;
+        el.style.borderColor = '#8E2A2A';
+      } else {
+        el.style.borderColor = '';
+      }
+    });
+    var gg = section.querySelector('[data-goalgroup]');
+    if(gg && !gg.querySelector('input[name="s5_goals"]:checked')){
+      ok = false; firstBad = firstBad || gg.querySelector('input');
+    }
+    var err = section.querySelector('.err');
+    if(err) err.classList.toggle('on', !ok);
+    if(!ok && firstBad){
+      firstBad.scrollIntoView({block:'center', behavior:'smooth'});
+      try{ firstBad.focus({preventScroll:true}); }catch(e){}
+    }
+    return ok;
+  }
+
+  /* ---- nav ---- */
+  form.addEventListener('click', function(e){
+    var next = e.target.closest('[data-next]');
+    var back = e.target.closest('[data-back]');
+    if(next){
+      if(validate(stations[current])) show(Math.min(current+1, stations.length-1));
+    }
+    if(back){ show(Math.max(current-1, 0)); }
+  });
+
+  /* ---- clear red border as user types ---- */
+  form.addEventListener('input', function(e){
+    if(e.target.style) e.target.style.borderColor = '';
+  });
+
+  /* ---- athlete path ---- */
+  var HYROX_GOALS = ['HYROX race prep','First HYROX \u2014 finish strong','HYROX PB \u2014 beat my time','HYROX Doubles \u2014 race as a pair','Fix my weakest stations'];
+  var curPath = 'hybrid';
+  var PATH_CFG = {
+    hybrid:   { label:'Hybrid Athlete', h1:'Couch to<br><em>Hybrid Athlete</em>',
+      h2a:'Hybrid coaching', h2b:'built off your numbers',
+      lead:'We coach one kind of athlete: the one who runs AND lifts. Your program is engineered from your own benchmarks \u2014 not a template.',
+      pillar3h:'Concurrent', pillar3p:'Running and strength programmed together, so one never steals from the other.' },
+    hyrox:    { label:'HYROX Athlete', h1:'Road to<br><em>race day</em>',
+      h2a:'HYROX coaching', h2b:'built off your numbers',
+      lead:'Ergs, sled, wall balls, compromised running \u2014 and a start line with your name on it. Your prep is engineered from your own benchmarks.',
+      pillar3h:'Race-specific', pillar3p:'Every block builds toward race day \u2014 stations, transitions and running under fatigue.' },
+    stronger: { label:'Stronger Athlete', h1:'Built<br><em>stronger</em>',
+      h2a:'Strength coaching', h2b:'built off your numbers',
+      lead:'Muscle, strength PBs and a body that holds up \u2014 built properly, progressed weekly, measured against your own numbers.',
+      pillar3h:'Progressive', pillar3p:'Volume, load and recovery sequenced so you grow without grinding to a halt.' }
+  };
+  function applyPath(p){
+    curPath = p;
+    document.body.classList.remove('path-hybrid','path-hyrox','path-stronger');
+    document.body.classList.add('path-' + p);
+    var ap = document.getElementById('athletePath');
+    if(ap) ap.value = PATH_CFG[p].label;
+    /* show/hide path-tagged content */
+    document.querySelectorAll('[data-path]').forEach(function(el){
+      el.hidden = el.getAttribute('data-path').split(' ').indexOf(p) === -1;
+    });
+    /* reset goal selections so hidden picks can't leak between paths */
+    var changed = false;
+    form.querySelectorAll('input[name="s5_goals"]:checked').forEach(function(i){ i.checked = false; changed = true; });
+    if(changed || true){ goalOrder = []; syncGoals(); if(typeof syncCatCounts==='function') syncCatCounts(); }
+    /* HYROX category opens itself on the hyrox path */
+    var gh = document.getElementById('gcatHyrox');
+    if(gh){
+      gh.classList.toggle('open', p === 'hyrox');
+      var hd = gh.querySelector('.gcat-head');
+      if(hd) hd.setAttribute('aria-expanded', p === 'hyrox' ? 'true' : 'false');
+    }
+    /* briefing copy */
+    var ht = document.getElementById('heroTitle');
+    if(ht) ht.innerHTML = PATH_CFG[p].h1;
+    var bt = document.querySelector('.brief-centre h2');
+    if(bt) bt.innerHTML = PATH_CFG[p].h2a + '<br><em>' + PATH_CFG[p].h2b + '</em>';
+    var bl = document.querySelector('.brief-centre .lead');
+    if(bl) bl.textContent = PATH_CFG[p].lead;
+    var p3 = document.querySelectorAll('.pillars .pillar')[2];
+    if(p3){ p3.querySelector('h3').textContent = PATH_CFG[p].pillar3h;
+            p3.querySelector('p').textContent = PATH_CFG[p].pillar3p; }
+    /* packages: relabel hero tier + refs, swap t2's base ref off Online where it isn't offered */
+    var heroName = HERO_LABEL[p];
+    var ht2 = document.getElementById('heroTierName');
+    if(ht2) ht2.textContent = heroName;
+    document.querySelectorAll('.refHero').forEach(function(r){ r.textContent = heroName; });
+    var t2ref = document.getElementById('t2OnlineRef');
+    if(t2ref) t2ref.innerHTML = (p === 'hyrox')
+      ? 'Full programming + weekly check-ins included'
+      : 'Everything in <span class="ref" style="color:var(--tint2)">Online</span>';
+    rebuildPkgSelect();
+    applyPackageRec();
+  }
+  var choosing = false;
+  document.querySelectorAll('#choose [data-choose]').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(choosing) return;
+      choosing = true;
+      applyPath(b.getAttribute('data-choose'));
+      var ch = document.getElementById('choose');
+      ch.classList.add('fade-out');
+      ch.style.pointerEvents = 'none';
+      setTimeout(function(){
+        ch.style.display = 'none';
+        document.body.classList.remove('pre-choose');
+        document.body.classList.add('arrived');
+        window.scrollTo({top:0, behavior:'auto'});
+        choosing = false;
+      }, 400);
+    });
+  });
+  var rePath = document.getElementById('rePath');
+  if(rePath){
+    rePath.addEventListener('click', function(){
+      var ch = document.getElementById('choose');
+      document.body.classList.remove('arrived');
+      document.body.classList.add('pre-choose');
+      ch.style.display = '';
+      ch.style.pointerEvents = '';
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ ch.classList.remove('fade-out'); });
+      });
+      window.scrollTo({top:0, behavior:'auto'});
+    });
+  }
+
+  /* ---- package recommendation engine ---- */
+  var pkgDirty = false;
+  var PKG_OPTION = {
+    'Doubles':'Doubles', 'Online':'Online', 'Premium':'Premium',
+    'Hybrid':'Hybrid', 'Pack':'10-session in-person package'
+  };
+  /* which packages each path sees, and what the hero is called there */
+  var PATH_PKGS = {
+    hybrid:   ['Online','Hybrid','Premium','Doubles','10-session in-person package'],
+    hyrox:    ['Hybrid','Premium','Doubles'],
+    stronger: ['Online','Hybrid','10-session in-person package']
+  };
+  var HERO_LABEL = { hybrid:'Hybrid', hyrox:'Race Coaching', stronger:'Strength Coaching' };
+  function pkgDisplay(value){
+    if(value === 'Hybrid') return HERO_LABEL[curPath] || 'Hybrid';
+    if(value === '10-session in-person package') return '10-Session Pack';
+    return value;
+  }
+  function rebuildPkgSelect(){
+    var sel = form.querySelector('select[name="s8_package_interest"]');
+    if(!sel) return;
+    var keep = PATH_PKGS[curPath];
+    var html = '<option value="">Select</option>';
+    keep.forEach(function(v){
+      html += '<option value="' + v + '">' + pkgDisplay(v) + '</option>';
+    });
+    html += '<option value="Not sure yet — talk me through it">Not sure yet — talk me through it</option>';
+    sel.innerHTML = html;
+    pkgDirty = false;
+  }
+  function recommendPackage(){
+    var fd = new FormData(form);
+    var style = fd.get('s1_coaching_style') || '';
+    var goals = fd.getAll('s5_goals');
+    var div = fd.get('s5_hyrox_division') || '';
+    var start = fd.get('s8_start_timing') || '';
+    var wks = weeksTo(fd.get('s5_event_date'));
+    var RACE = HYROX_GOALS.concat(['Half marathon prep','Full marathon prep']);
+    var hasRaceGoal = goals.some(function(g){ return RACE.indexOf(g) > -1; });
+    var datedRace = hasRaceGoal && wks !== null && wks >= 0;
+
+    if(/Doubles/.test(div) || goals.indexOf('HYROX Doubles \u2014 race as a pair') > -1){
+      return { key:'Doubles',
+        why:'You\u2019re targeting the HYROX doubles division \u2014 shared sessions with your partner, separate individualised programs.' };
+    }
+    if(style === 'Online coaching' && curPath !== 'hyrox'){
+      return { key:'Online',
+        why:'You\u2019ve chosen online-only coaching \u2014 full programming, weekly check-ins and form review, wherever you train.' };
+    }
+    if(datedRace && wks < 16){
+      return { key:'Premium',
+        why:'You\u2019re ' + wks + ' weeks out from your race \u2014 a tight runway earns two coached sessions a week and full race-week support.' };
+    }
+    if(curPath !== 'hyrox' && style === 'In-person coaching' && start === 'Just exploring for now' && !hasRaceGoal){
+      return { key:'Pack',
+        why:'You\u2019re exploring in-person coaching without a race locked in \u2014 ten coached sessions is the simplest way to start.' };
+    }
+    return { key:'Hybrid',
+      why:'In-person sessions to set technique, plus full programming for everything in between \u2014 the strongest fit for your goals.' };
+  }
+  function applyPackageRec(){
+    if(pkgDirty) return;
+    var sel = form.querySelector('select[name="s8_package_interest"]');
+    if(!sel) return;
+    var rec = recommendPackage();
+    var target = PKG_OPTION[rec.key];
+    for(var i=0;i<sel.options.length;i++){
+      if(sel.options[i].value === target || sel.options[i].text === target){
+        sel.selectedIndex = i; return;
+      }
+    }
+  }
+  form.addEventListener('change', function(e){
+    if(e.target.name === 's8_package_interest'){ pkgDirty = true; return; }
+    if(['s1_coaching_style','s5_goals','s5_hyrox_division','s5_event_date','s8_start_timing'].indexOf(e.target.name) > -1){
+      applyPackageRec();
+    }
+  });
+
+  /* ---- unit calibration ---- */
+  function times(startSec,endSec,stepSec,fmtH){
+    var out=[];
+    for(var t=startSec;t<=endSec;t+=stepSec){
+      var h=Math.floor(t/3600),m=Math.floor(t%3600/60),x=t%60;
+      out.push(fmtH&&h?(h+':' + ('0'+m).slice(-2)+':'+('0'+x).slice(-2))
+                     :((h*60+m)+':'+('0'+x).slice(-2)));
+    }
+    return out;
+  }
+  var UNITS = {
+    Metric: {
+      heightLabel:'Height (cm)', heightPh:'e.g. 178',
+      weightLabel:'Weight (kg)', weightPh:'e.g. 82',
+      waistLabel:'Waist (cm)', waistPh:'e.g. 84',
+      runWkLabel:'Running volume per week (km)',
+      runWk:["N/A — I don't run",'Under 10 km','10–20 km','20–40 km','40–60 km','60 km+'],
+      squatLabel:'Back squat (kg)', dlLabel:'Deadlift (kg)', benchLabel:'Bench press (kg)',
+      squatPh:'e.g. 80', dlPh:'e.g. 120', benchPh:'e.g. 60', longPh:'e.g. 14 km', pacePh:'e.g. 6:30 /km',
+      pace: times(4*60+30, 8*60+30, 15, false).map(function(t){return t+' /km';}),
+      longrun:['3 km','5 km','8 km','10 km','12 km','15 km','18 km','21 km','25 km','30 km','32 km+'],
+      lift:['30 kg','40 kg','50 kg','60 kg','70 kg','80 kg','90 kg','100 kg','110 kg','120 kg','140 kg','160 kg','180 kg','200 kg+']
+    },
+    Imperial: {
+      heightLabel:'Height (ft & in)', heightPh:"e.g. 5'10\"",
+      weightLabel:'Weight (lb)', weightPh:'e.g. 180',
+      waistLabel:'Waist (in)', waistPh:'e.g. 33',
+      runWkLabel:'Running volume per week (mi)',
+      runWk:["N/A — I don't run",'Under 6 mi','6–12 mi','12–25 mi','25–37 mi','37 mi+'],
+      squatLabel:'Back squat (lb)', dlLabel:'Deadlift (lb)', benchLabel:'Bench press (lb)',
+      squatPh:'e.g. 175', dlPh:'e.g. 265', benchPh:'e.g. 135', longPh:'e.g. 9 mi', pacePh:'e.g. 10:30 /mi',
+      pace: times(7*60, 13*60+30, 30, false).map(function(t){return t+' /mi';}),
+      longrun:['2 mi','3 mi','5 mi','6 mi','8 mi','9 mi','11 mi','13.1 mi','16 mi','19 mi','20 mi+'],
+      lift:['65 lb','90 lb','110 lb','135 lb','155 lb','175 lb','200 lb','225 lb','250 lb','275 lb','315 lb','365 lb','405 lb','440 lb+']
+    }
+  };
+  var TIMES_FIXED = {
+    dl_5k:   times(17*60, 40*60, 60, false),
+    dl_10k:  times(38*60, 80*60, 120, false),
+    dl_half: times(85*60, 180*60, 300, true),
+    dl_full: times(180*60, 360*60, 600, true),
+    dl_erg:  times(3*60+10, 5*60+40, 10, false),
+    dl_reps: ['5','10','15','20','25','30','40','50','60+'],
+    dl_hyrox: times(60*60, 140*60, 300, true),
+    dl_hyroxTarget: ['SUB 1:00','SUB 1:10','SUB 1:15','SUB 1:20','SUB 1:30','SUB 1:40','SUB 1:50','SUB 2:00','Just finish'],
+    dl_target: ['SUB 20 min 5k','SUB 25 min 5k','SUB 50 min 10k','SUB 1:00 10k','SUB 1:45 half','SUB 2:00 half','SUB 3:30 marathon','SUB 4:00 marathon','SUB 4:30 marathon','Just finish strong']
+  };
+  function fillList(id, vals){
+    var dl = document.getElementById(id);
+    if(!dl) return;
+    dl.innerHTML = vals.map(function(v){return '<option value="'+v+'">';}).join('');
+  }
+  function applyUnits(sys){
+    var u = UNITS[sys] || UNITS.Metric;
+    document.querySelectorAll('[data-u]').forEach(function(el){
+      var k = el.getAttribute('data-u');
+      if(u[k]) el.textContent = u[k];
+    });
+    document.querySelectorAll('[data-u-ph]').forEach(function(el){
+      var k = el.getAttribute('data-u-ph');
+      if(u[k]) el.placeholder = u[k];
+    });
+    var sel = document.getElementById('runWkSel');
+    if(sel){
+      var kept = sel.selectedIndex;
+      sel.innerHTML = '<option value="">Select</option>' +
+        u.runWk.map(function(o){return '<option>'+o+'</option>';}).join('');
+      if(kept > 0 && kept < sel.options.length) sel.selectedIndex = kept;
+    }
+    fillList('dl_pace', u.pace);
+    fillList('dl_longrun', u.longrun);
+    fillList('dl_lift', u.lift);
+  }
+  Object.keys(TIMES_FIXED).forEach(function(id){ fillList(id, TIMES_FIXED[id]); });
+  applyUnits('Metric');
+  form.addEventListener('change', function(e){
+    if(e.target.name === 's1_preferred_units') applyUnits(e.target.value);
+  });
+
+  /* ---- goals: multi-select, primary tracking, focus warning ---- */
+  var goalGroup = document.getElementById('goalGroup');
+  var goalOrder = [];
+  var hyroxPanel = document.getElementById('hyroxPanel');
+  var SCREEN_NAMES = ['s6_heart_condition','s6_chest_pain','s6_dizziness','s6_asthma_12mo',
+                      's6_blood_glucose','s6_musculoskeletal','s6_other_condition'];
+
+  function syncGoals(){
+    var boxes = Array.prototype.filter.call(
+      goalGroup.querySelectorAll('input[name="s5_goals"]'),
+      function(b){ return !b.closest('[hidden]'); });
+    Array.prototype.forEach.call(boxes, function(b){
+      if(b.checked && goalOrder.indexOf(b.value) === -1) goalOrder.push(b.value);
+      if(!b.checked){
+        var i = goalOrder.indexOf(b.value);
+        if(i > -1) goalOrder.splice(i,1);
+      }
+    });
+    var primary = goalOrder[0] || '';
+    document.getElementById('primaryGoal').value = primary;
+    Array.prototype.forEach.call(boxes, function(b){
+      b.closest('.gtile').classList.toggle('is-primary', b.checked && b.value === primary);
+    });
+    var flag = document.getElementById('goalFlag');
+    var n = goalOrder.length;
+    if(n >= 2){
+      document.getElementById('goalFlagText').textContent =
+        'You\u2019ve picked ' + n + ' goals. Chasing several at once slows all of them \u2014 ' +
+        'the fastest progress comes from one clear focus. We\u2019ll build the program around your primary (' +
+        primary + ') and treat the rest as supporting work.';
+      flag.classList.add('on');
+    } else {
+      flag.classList.remove('on');
+    }
+    var racePanel = document.getElementById('racePanel');
+    if(curPath === 'hyrox'){
+      hyroxPanel.hidden = false;
+      if(racePanel) racePanel.hidden = false;
+    } else if(curPath === 'stronger'){
+      hyroxPanel.hidden = true;
+      if(racePanel) racePanel.hidden = true;
+    } else {
+      var hasHyrox = goalOrder.some(function(g){ return HYROX_GOALS.indexOf(g) > -1; });
+      var RACE_GOALS = ['Half marathon prep','Full marathon prep'];
+      var hasRace = goalOrder.some(function(g){ return RACE_GOALS.indexOf(g) > -1; });
+      hyroxPanel.hidden = !hasHyrox;
+      if(racePanel) racePanel.hidden = !hasRace;
+    }
+  }
+
+  /* category collapse + selection counts */
+  document.querySelectorAll('.gcat-head').forEach(function(h){
+    h.addEventListener('click', function(){
+      var cat = h.parentNode;
+      var open = cat.classList.toggle('open');
+      h.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  function syncCatCounts(){
+    document.querySelectorAll('.gcat').forEach(function(cat){
+      var n = cat.querySelectorAll('input[name="s5_goals"]:checked').length;
+      var chip = cat.querySelector('.gcat-count');
+      chip.hidden = n === 0;
+      chip.textContent = n + ' selected';
+    });
+  }
+
+  form.addEventListener('change', function(e){
+    if(e.target.name === 's5_goals'){ syncGoals(); syncCatCounts(); }
+    if(SCREEN_NAMES.indexOf(e.target.name) > -1){
+      var flagged = SCREEN_NAMES.some(function(n){
+        var sel = form.querySelector('input[name="'+n+'"]:checked');
+        return sel && sel.value === 'yes';
+      });
+      document.getElementById('apssFlag').classList.toggle('on', flagged);
+    }
+  });
+
+  /* ---- build summary ---- */
+  var GROUPS = [
+    ['1. ATHLETE', [
+      ['s0_athlete_path','Athlete path'],
+      ['s1_full_name','Name'],['s1_email','Email'],['s1_mobile','Mobile'],['s1_dob','Date of birth'],
+      ['s1_suburb','Suburb'],['s1_sex_at_birth','Sex at birth'],
+      ['s1_coaching_style','Preferred coaching style'],['s1_current_training_location','Currently training at'],
+      ['s1_preferred_units','Preferred units']
+    ]],
+    ['2. BODY METRICS', [
+      ['s2_height','Height'],['s2_weight','Weight'],['s2_resting_hr','Resting HR (bpm)'],
+      ['s2_waist','Waist'],['s2_bodycomp_goal','Body composition goal']
+    ]],
+    ['3. TRAINING HISTORY', [
+      ['s3_training_experience','Training experience'],['s3_sessions_per_week_now','Sessions per week now'],
+      ['s3_strength_sessions_week','Strength sessions per week'],['s3_running_volume_week','Running volume per week'],
+      ['s3_sessions_committable','Sessions per week committable'],['s3_equipment_access','Equipment access'],
+      ['s3_other_sports','Other sports / activities']
+    ]],
+    ['4. CURRENT BENCHMARKS', [
+      ['s4_pb_5k','5 km'],['s4_pb_10k','10 km'],['s4_pb_half','Half marathon'],['s4_pb_marathon','Marathon'],
+      ['s4_longest_recent_run','Longest run, last 3 months'],['s4_easy_pace','Easy pace'],
+      ['s4_back_squat','Back squat'],['s4_deadlift','Deadlift'],['s4_bench_press','Bench press'],['s4_max_pushups','Strict push-ups'],
+      ['s4_row_1k','1000 m row'],['s4_ski_1k','1000 m SkiErg'],['s4_wallballs_unbroken','Wall balls unbroken'],
+      ['s4_hyrox_before','Raced HYROX before'],['s4_hyrox_pb','HYROX PB']
+    ]],
+    ['5. GOALS & TIMELINE', [
+      ['s5_primary_goal','PRIMARY GOAL'],['s5_goals','All selected goals'],
+      ['s5_hyrox_division','HYROX division'],['s5_hyrox_race','HYROX race'],
+      ['s5_hyrox_target','HYROX target time'],['s5_event_name','Target event'],['s5_event_date','Event date'],
+      ['s5_target_outcome','Target time / outcome'],['s5_other_training','Other training'],['s5_motivation','Motivation']
+    ]],
+    ['6. PRE-EXERCISE SCREENING', [
+      ['s6_heart_condition','Heart condition or stroke'],['s6_chest_pain','Chest pain at rest or on exertion'],
+      ['s6_dizziness','Faintness or dizziness'],['s6_asthma_12mo','Asthma attack in last 12 months'],
+      ['s6_blood_glucose','Blood glucose control issues'],['s6_musculoskeletal','Diagnosed musculoskeletal problem'],
+      ['s6_other_condition','Other medical condition'],['s6_pregnancy','Pregnant or postpartum'],
+      ['s6_advised_modify','Advised to avoid or modify activity'],['s6_bp_cholesterol','High BP or cholesterol'],
+      ['s6_family_cardiac','Family history of early cardiac events'],['s6_energy_eating','Energy availability / eating concerns']
+    ]],
+    ['7. MEDICAL & LIFESTYLE', [
+      ['s7_injuries','Current or recurring injuries'],['s7_surgeries','Past surgeries / major injuries'],
+      ['s7_medications','Medications'],['s7_allergies','Allergies'],['s7_under_care','Currently under care'],
+      ['s7_hypermobility','Hypermobility / joint instability'],
+      ['s7_sleep','Sleep per night'],['s7_stress','Stress level'],['s7_occupation','Occupation activity'],
+      ['s7_alcohol','Alcohol'],['s7_smoking','Smoking / vaping'],['s7_eating','Current eating'],
+      ['s7_dietary_requirements','Dietary requirements']
+    ]],
+    ['8. LOGISTICS & CONSENT', [
+      ['s8_availability','Availability'],['s8_package_interest','Package interest'],['s8_lead_source','Source'],
+      ['s8_start_timing','Desired start'],['s8_notes','Additional notes'],
+      ['s8_decl_accuracy','Declared accurate'],['s8_decl_risk','Risk acknowledged'],
+      ['s8_decl_clearance','Clearance acknowledged'],['s8_decl_privacy','Privacy consent'],
+      ['s8_marketing_optin','Marketing opt-in']
+    ]]
+  ];
+
+  var SCREEN_TEXT = {
+    s6_heart_condition:'heart condition or stroke', s6_chest_pain:'chest pain',
+    s6_dizziness:'faintness or dizziness', s6_asthma_12mo:'asthma attack in last 12 months',
+    s6_blood_glucose:'blood glucose control', s6_musculoskeletal:'diagnosed musculoskeletal problem',
+    s6_other_condition:'other medical condition', s6_pregnancy:'pregnant or postpartum',
+    s6_advised_modify:'advised to modify activity', s6_bp_cholesterol:'high blood pressure or cholesterol',
+    s6_family_cardiac:'family cardiac history', s6_energy_eating:'energy availability / eating concerns'
+  };
+
+  function pad(str,n){ str = String(str); while(str.length < n) str += ' '; return str; }
+
+  function weeksTo(dateStr){
+    if(!dateStr) return null;
+    var d = new Date(dateStr + 'T00:00:00');
+    if(isNaN(d)) return null;
+    return Math.round((d - new Date()) / 604800000);
+  }
+
+  function summary(){
+    var fd = new FormData(form);
+    var L = [];
+    var flags = [];
+
+    Object.keys(SCREEN_TEXT).forEach(function(k){
+      var sel = form.querySelector('input[name="'+k+'"]:checked');
+      if(sel && sel.value === 'yes') flags.push(SCREEN_TEXT[k]);
+    });
+
+    var athlete = fd.get('s1_full_name') || 'Unnamed';
+    var wks = weeksTo(fd.get('s5_event_date'));
+    var goals = fd.getAll('s5_goals');
+
+    L.push('LKDN FITNESS - HYBRID ATHLETE INTAKE');
+    L.push('======================================================');
+    L.push('Athlete            : ' + athlete);
+    L.push('Submitted          : ' + new Date().toLocaleString('en-AU'));
+    L.push('Primary goal       : ' + (fd.get('s5_primary_goal') || 'not stated'));
+    if(goals.length > 1) L.push('Secondary goals    : ' + goals.slice(1).join('; '));
+    L.push('Units              : ' + (fd.get('s1_preferred_units') || 'Metric'));
+    L.push('Coaching style     : ' + (fd.get('s1_coaching_style') || 'not stated'));
+    L.push('Screening status   : ' + (flags.length
+            ? 'FLAGGED - GP clearance required before first session'
+            : 'CLEAR - no screening flags'));
+    if(wks !== null) L.push('Weeks to event     : ' + wks);
+    L.push('======================================================');
+
+    GROUPS.forEach(function(g){
+      var title = g[0], rows = g[1], body = [];
+      rows.forEach(function(r){
+        var v;
+        if(r[0] === 's5_goals'){
+          var all = fd.getAll('s5_goals');
+          v = all.length ? all.join(' | ') : null;
+        } else {
+          v = fd.get(r[0]);
+        }
+        if(v === null || v === '') return;
+        if(r[0].indexOf('s8_decl') === 0 || r[0] === 's8_marketing_optin') v = 'Yes';
+        body.push('  ' + pad(r[1] + ':', 34) + v);
+      });
+      if(!body.length) return;
+      L.push('');
+      L.push('--- ' + title + ' ' + new Array(Math.max(2, 52 - title.length)).join('-'));
+      L = L.concat(body);
+    });
+
+    L.push('');
+    L.push('--- PROGRAMMING NOTES ' + new Array(32).join('-'));
+    L.push('  ' + pad('Screening flags:', 34) + (flags.length ? flags.join('; ') : 'none'));
+    L.push('  ' + pad('Goal count:', 34) + goals.length +
+           (goals.length > 1 ? ' (multi-goal: weight to primary, rest supporting)' : ''));
+    L.push('  ' + pad('Sessions/wk to program:', 34) + (fd.get('s3_sessions_committable') || 'not stated'));
+    L.push('  ' + pad('Equipment available:', 34) + (fd.get('s3_equipment_access') || 'not stated'));
+    L.push('  ' + pad('Recovery constraints:', 34) +
+           'sleep ' + (fd.get('s7_sleep') || '?') + ', stress ' + (fd.get('s7_stress') || '?') +
+           ', ' + (fd.get('s7_occupation') || 'occupation ?'));
+    L.push('  ' + pad('Block length:', 34) + (wks !== null ? wks + ' weeks to event' : '12 weeks (no dated event)'));
+    var rec = recommendPackage();
+    L.push('  ' + pad('Engine recommendation:', 34) + PKG_OPTION[rec.key]);
+    L.push('  ' + pad('Lead selected package:', 34) + (fd.get('s8_package_interest') || 'none') +
+           ((fd.get('s8_package_interest')||'') === PKG_OPTION[rec.key] ? ' (MATCHES engine)' : ' (differs from engine)'));
+
+    L.push('');
+    L.push('--- NEXT STEP: BUILD THE PROGRAM ' + new Array(21).join('-'));
+    L.push('  Paste this whole intake into Claude with the prompt:');
+    L.push('');
+    L.push('  "Use the lkdn-client-program skill to build a full periodised');
+    L.push('   LKDN FITNESS program from the intake below. Respect the screening');
+    L.push('   flags, the stated session availability, the preferred units and');
+    L.push('   the equipment access. Weight programming to the primary goal;');
+    L.push('   treat other selected goals as supporting emphases. Include pace');
+    L.push('   and load prescriptions derived from the benchmarks."');
+
+    return L.join('\n');
+  }
+
+  var lastSummary = '';
+
+  /* ---- submit ---- */
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var allOk = stations.every(function(s,i){
+      var ok = validate(s);
+      if(!ok && current !== i) show(i);
+      return ok;
+    });
+    if(!allOk) return;
+
+    lastSummary = summary();
+
+    var who = (new FormData(form).get('s1_full_name') || 'New lead');
+    var isFlagged = lastSummary.indexOf('SCREENING FLAG') !== -1;
+    var pLabel = (document.getElementById('athletePath') || {}).value || '';
+    document.getElementById('fsSubject').value =
+      'LKDN FITNESS intake — ' + who + (pLabel ? ' — ' + pLabel : '') + (isFlagged ? '  [SCREENING FLAG]' : '');
+
+    var sumField = form.querySelector('input[name="_summary"]');
+    if(!sumField){
+      sumField = document.createElement('input');
+      sumField.type = 'hidden'; sumField.name = '_summary';
+      form.appendChild(sumField);
+    }
+    sumField.value = lastSummary;
+
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    function finish(){
+      var brief = document.querySelector('.brief');
+      if(brief) brief.style.display = 'none';
+      var rec = recommendPackage();
+      var chosen = (new FormData(form).get('s8_package_interest') || '').trim();
+      var recName = PKG_OPTION[rec.key];
+      var recShown = pkgDisplay(recName);
+      var chosenShown = chosen ? pkgDisplay(chosen) : '';
+      var box = document.getElementById('doneRec');
+      var eyebrow = document.getElementById('doneRecEyebrow');
+      var nameEl = document.getElementById('doneRecName');
+      var whyEl = document.getElementById('doneRecWhy');
+      nameEl.textContent = recShown;
+      if(chosen && chosen === recName){
+        eyebrow.textContent = 'You picked the right fit';
+        whyEl.textContent = rec.why;
+      } else if(chosen && chosen.indexOf('Not sure') === -1){
+        eyebrow.textContent = 'Based on your answers, also worth a look';
+        whyEl.textContent = 'You selected ' + chosenShown + ' \u2014 great starting point. ' + rec.why +
+          ' Your coach will walk you through both on the call.';
+      } else {
+        eyebrow.textContent = 'Your best fit';
+        whyEl.textContent = rec.why + ' Your coach will walk you through it when they call.';
+      }
+      box.hidden = false;
+      form.style.display = 'none';
+      document.querySelector('.track-wrap').style.display = 'none';
+      document.getElementById('done').classList.add('on');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    if(ENDPOINT){
+      fetch(ENDPOINT, {
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body:new FormData(form)
+      }).then(finish).catch(function(){
+        btn.disabled = false; btn.textContent = 'Send my intake';
+        alert('That didn\u2019t send. Check your connection and try again, or email the summary to ' + FALLBACK_EMAIL + '.');
+      });
+    } else {
+      window.location.href = 'mailto:' + FALLBACK_EMAIL +
+        '?subject=' + encodeURIComponent('LKDN FITNESS intake — ' + (new FormData(form).get('s1_full_name') || '')) +
+        '&body=' + encodeURIComponent(lastSummary);
+      setTimeout(finish, 600);
+    }
+  });
+
+  /* ---- tier accordion ---- */
+  var tiersWrap = document.getElementById('tiers');
+  if(tiersWrap){
+    tiersWrap.addEventListener('click', function(e){
+      var head = e.target.closest('.tier-head');
+      if(!head) return;
+      var tier = head.parentNode;
+      var wasOpen = tier.classList.contains('open');
+
+      Array.prototype.forEach.call(tiersWrap.querySelectorAll('.tier'), function(t){
+        t.classList.remove('open');
+        t.querySelector('.tier-head').setAttribute('aria-expanded','false');
+      });
+
+      if(!wasOpen){
+        tier.classList.add('open');
+        head.setAttribute('aria-expanded','true');
+        tiersWrap.classList.add('has-open');
+      } else {
+        tiersWrap.classList.remove('has-open');
+      }
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key !== 'Escape' || !tiersWrap.classList.contains('has-open')) return;
+      var open = tiersWrap.querySelector('.tier.open');
+      if(open){
+        open.classList.remove('open');
+        open.querySelector('.tier-head').setAttribute('aria-expanded','false');
+        open.querySelector('.tier-head').focus();
+      }
+      tiersWrap.classList.remove('has-open');
+    });
+  }
+
+  var startBtn = document.getElementById('startBtn');
+  if(startBtn){
+    startBtn.addEventListener('click', function(){
+      document.body.classList.remove('pre-start');
+      var t = document.querySelector('.track-wrap');
+      window.scrollTo({ top: t.offsetTop - 4,
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      var first = document.querySelector('.station.on input');
+      if(first){ try{ first.focus({preventScroll:true}); }catch(e){} }
+    });
+  }
+
+  paint();
+})();
+</script>
+</body>
+</html>
